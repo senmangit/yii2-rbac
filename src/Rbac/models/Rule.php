@@ -129,13 +129,14 @@ class Rule extends \yii\db\ActiveRecord
      * @return array
      * 获取权限节点树
      */
-    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id, $sort = 1)
+    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id, $sort = 1, $system_id)
     {
 
         try {
             $rule_list = [];
             $condition = [];
             $condition['pid'] = $pid;
+            $condition['system_id'] = $system_id;
 
             //type=1即ID为用户ID时，此ID必须大于0
             if (!$id > 0 && $type != 0) {
@@ -150,7 +151,8 @@ class Rule extends \yii\db\ActiveRecord
                 $condition['status'] = $status;
             }
 
-            $base_fields = ['rule_id', 'pid', 'name', 'title', 'href', 'icon', 'status', 'menu_show', 'sort'];
+
+            $base_fields = ['system_id', 'rule_id', 'pid', 'name', 'title', 'href', 'icon', 'status', 'menu_show', 'sort'];
 
             if ($fields != null) {
                 $fields = array_merge($fields, $base_fields);
@@ -189,11 +191,10 @@ class Rule extends \yii\db\ActiveRecord
                     if ($type == 0) {//当为0的时候为角色ID
                         //获取角色授权状态
                         $role = new Role();
-                        $access_status = in_array($rule_list[$s]['name'], $role->getAccessByRoleId($id)) == true ? 1 : 0;
+                        $access_status = in_array($rule_list[$s]['name'], Role::getAccessByRoleId($id, "name", 0, $system_id)) == true ? 1 : 0;
                     } else {//否则为用户ID
                         //获取用户授权状态
-                        $access_model = new Access();
-                        $access_status = $access_model->auth($id, $rule_list[$s]['name'], $module_id) == true ? 1 : 0;
+                        $access_status = RoleRule::hasAuth($id, $rule_list[$s]['name'], $module_id, $system_id) == true ? 1 : 0;
 
 //                        //判断是否为常用菜单
 //                        if (UsedFunctions::find()->where(["user_id" => $id, "rule_id" => $rule_list[$s]['rule_id']])->select(["id"])->one()) {
@@ -216,7 +217,7 @@ class Rule extends \yii\db\ActiveRecord
 
             sort($rule_list);
             foreach ($rule_list as $rk => $rv) {
-                $rule_list[$rk]['child_rules'] = $this->getRulesTree($id, $type, $menu_show, $status, $rule_list[$rk]['rule_id'], $fields, $is_fifter, $module_id, $sort);
+                $rule_list[$rk]['child_rules'] = $this->getRulesTree($id, $type, $menu_show, $status, $rule_list[$rk]['rule_id'], $fields, $is_fifter, $module_id, $sort, $system_id);
                 //判断是否为特殊菜单,true：展示，false：不展示  //
                 if ($menu_show == 1) {
 //                    //判断路由在当前时间内可否作为菜单显示
@@ -262,14 +263,14 @@ class Rule extends \yii\db\ActiveRecord
      * @return array|null
      * 根据规则ID获取其下所有节点id
      */
-    public function getSonByRuleId($rule_id, &$ids = [])
+    public static function getSonByRuleId($rule_id, &$ids = [])
     {
         $rules = Rule::find()->where(["pid" => $rule_id])->all();
 
         if ($rules) {
             foreach ($rules as $k => $v) {
                 $ids[] = $v['rule_id'];
-                $this->getSonByRuleId($v['rule_id'], $ids);
+                self::getSonByRuleId($v['rule_id'], $ids);
             }
 
         }
