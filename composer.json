@@ -19,8 +19,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Crontab\\models\\": "src/Rbac/models",
-      "Crontab\\controllers\\": "src/Rbac/controllers"
+      "Rbac\\models\\": "src/Rbac/models",
+      "Rbac\\controllers\\": "src/Rbac/controllers"
     }
   }
 }

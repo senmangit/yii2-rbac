@@ -2,8 +2,8 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/Rbac/controllers" isTestSource="false" packagePrefix="Crontab\controllers\" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Rbac/models" isTestSource="false" packagePrefix="Crontab\models\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Rbac/controllers" isTestSource="false" packagePrefix="Rbac\controllers\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Rbac/models" isTestSource="false" packagePrefix="Rbac\models\" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
