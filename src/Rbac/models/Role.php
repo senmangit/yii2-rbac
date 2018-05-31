@@ -5,22 +5,25 @@ namespace Rbac\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%role}}".
+ * This is the model class for table "role".
  *
- * @property integer $role_id
- * @property string $name
- * @property integer $status
- * @property string $remark
- * @property string $create_time
- * @property string $update_time
+ * @property int $role_id 自增ID
+ * @property int $system_id 子系统唯一标志
+ * @property string $name 角色名称
+ * @property int $status 状态，0：启用，1：不启用
+ * @property string $remark 备注
+ * @property string $created_at 创建时间
+ * @property string $updated_at 更新时间
  *
- * @property Access[] $accesses
+ * @property RequirementApprovalProcess[] $requirementApprovalProcesses
+ * @property System $system
+ * @property RoleRule[] $roleRules
  * @property UserRole[] $userRoles
  */
 class Role extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -28,40 +31,60 @@ class Role extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['status'], 'integer'],
-            [['create_time', 'update_time'], 'safe'],
+            [['system_id', 'name'], 'required'],
+            [['system_id', 'status'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name', 'remark'], 'string', 'max' => 50],
-            [['name'], 'unique'],
+            [['system_id'], 'exist', 'skipOnError' => true, 'targetClass' => System::className(), 'targetAttribute' => ['system_id' => 'system_id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'role_id' => 'Role ID',
+            'system_id' => 'System ID',
             'name' => 'Name',
             'status' => 'Status',
             'remark' => 'Remark',
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAccesses()
+    public function getRequirementApprovalProcesses()
     {
-        return $this->hasMany(Access::className(), ['role_id' => 'role_id']);
+        return $this->hasMany(RequirementApprovalProcess::className(), ['opreator_role_id' => 'role_id']);
+    }
+
+
+    ////////////////////////////////////必须函数////////////////////////
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSystem()
+    {
+        return $this->hasOne(System::className(), ['system_id' => 'system_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRoleRules()
+    {
+        return $this->hasMany(RoleRule::className(), ['role_id' => 'role_id']);
     }
 
     /**
@@ -72,18 +95,13 @@ class Role extends \yii\db\ActiveRecord
         return $this->hasMany(UserRole::className(), ['role_id' => 'role_id']);
     }
 
-    public function getRole($condition, $field = "*")
-    {
-        return Role::find()->where($condition)->select($field)->one();
-    }
-
     /**
      * @param $data
      * @param array $condition
      * @return int
      * 根据条件进行修改
      */
-    public function updateByCondition($condition, $data)
+    public static function updateByCondition($condition, $data)
     {
         return Role::updateAll($data, $condition);
     }
@@ -94,9 +112,9 @@ class Role extends \yii\db\ActiveRecord
      * @return int
      * 根据ID进行修改
      */
-    public function updateByRoleId($role_id, $data)
+    public static function updateByRoleId($role_id, $data)
     {
-        return $this->updateByCondition(["role_id" => $role_id], $data);
+        return self::updateByCondition(["role_id" => $role_id], $data);
     }
 
     /**
@@ -108,14 +126,14 @@ class Role extends \yii\db\ActiveRecord
     {
         $tr = \Yii::$app->db->beginTransaction();
         try {
-            //1、删除access下的记录
-            (new Access())->deleteByCondition(["role_id" => $role_id]);
+            //1、删除user_role下的记录
+            UserRole::deleteByCondition(["role_id" => $role_id]);
             //2、删除user_role下的记录
-            (new UserRole())->deleteByCondition(["role_id" => $role_id]);
+            UserRole::deleteByCondition(["role_id" => $role_id]);
             //3、删除role表记录
-            $query = $this->deleteByCondition(["role_id" => $role_id]);
+            self::deleteByCondition(["role_id" => $role_id]);
             $tr->commit();
-            return $query;
+            return true;
         } catch (\Exception $exception) {
             $tr->rollBack();
             return false;
@@ -128,7 +146,7 @@ class Role extends \yii\db\ActiveRecord
      * 根据条件进行删除
      */
 
-    public function deleteByCondition($condition = array())
+    public static function deleteByCondition($condition = array())
     {
         return Role::deleteAll($condition);
     }
@@ -136,10 +154,13 @@ class Role extends \yii\db\ActiveRecord
 
     /**
      * @param $role_id
+     * @param $field
+     * @param $status
+     * @param $system_id
      * @return array|null
      * 获取该角色下的所有节点名
      */
-    public function getAccessByRoleId($role_id, $field = "name", $status = 0)
+    public static function getAccessByRoleId($role_id, $field = "name", $status = 0, $system_id)
     {
         $access = [];
         try {
@@ -147,12 +168,12 @@ class Role extends \yii\db\ActiveRecord
             $condition = [
                 "role_id" => $role_id,
                 "status" => $status,
+                "system_id" => $system_id,
             ];
-            $role_model = new Role();
-            $role = $role_model->getRole($condition, ['role_id']);
-
+            //获取该角色的基本信息
+            $role = Role::getRoleByCondition($condition, ['role_id']);
             if ($role) {
-                $role_rule = $role->getAccesses()->select(['rule_id'])->all();
+                $role_rule = $role->getRoleRules()->select(['rule_id'])->all();
                 $rule_arr = [];
                 if ($role_rule) {
                     foreach ($role_rule as $k => $v) {
@@ -162,8 +183,7 @@ class Role extends \yii\db\ActiveRecord
                     }
                 }
                 $rule_arr = @array_flip(array_flip($rule_arr));//获取到所有该角色的所有节点ID
-                $rules = Rule::find()->where(['status' => 0])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
-
+                $rules = Rule::find()->where(['status' => 0, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
                 if ($rules) {
                     foreach ($rules as $rk => $rv) {
                         $access[] = $rv[$field];
@@ -173,21 +193,30 @@ class Role extends \yii\db\ActiveRecord
         } catch (\Exception $exception) {
             return [];
         }
-
         return @array_flip(array_flip($access));
 
     }
 
+    /**
+     * @param $id
+     * @param string $fields
+     * @return mixed
+     * 通过角色ID获取角色信息
+     */
+    public static function getRoleById($id, $fields = "*")
+    {
+        return Role::find()->select($fields)->where(["role_id" => $id])->find();
+    }
 
     /**
-     * 获取角色列表（下拉列表框）
+     * @param $condition
+     * @param string $fields
      * @return array|\yii\db\ActiveRecord[]
+     * 通过条件进行获取
      */
-    public function getRoleList()
+    public static function getRoleByCondition($condition, $fields = "*")
     {
-        return static::find()
-            ->select(['role_id', 'name'])
-            ->where(['status' => 0])
-            ->all();
+        return Role::find()->select($fields)->where($condition)->all();
     }
+
 }

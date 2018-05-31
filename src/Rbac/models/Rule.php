@@ -5,28 +5,29 @@ namespace Rbac\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%rule}}".
+ * This is the model class for table "rule".
  *
- * @property integer $rule_id
- * @property string $name
- * @property string $title
- * @property integer $pid
- * @property integer $status
- * @property string $remark
- * @property integer $sort
- * @property integer $menu_show
+ * @property int $rule_id 自增ID
+ * @property int $system_id 子系统唯一标志
+ * @property string $name url（规则节点名称）
+ * @property string $title 标题
+ * @property string $href url链接
+ * @property int $pid 上层ID
+ * @property int $status 状态，0：启用，1：禁用
+ * @property string $remark 备注
+ * @property int $sort 权重
+ * @property int $menu_show 是否显示菜单，0：不显示，1：显示
  * @property string $icon
- * @property string $href
- * @property string $create_time
- * @property string $update_time
+ * @property string $create_at 创建时间
+ * @property string $update_at 修改时间
  *
- * @property Access[] $accesses
- * @property UsedFunctions[] $usedFunctions
+ * @property RoleRule[] $roleRules
+ * @property System $system
  */
 class Rule extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -34,47 +35,57 @@ class Rule extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['name', 'title', 'status', 'menu_show'], 'required'],
-            [['pid', 'status', 'sort', 'menu_show'], 'integer'],
-            [['create_time', 'update_time'], 'safe'],
+            [['system_id', 'name', 'title'], 'required'],
+            [['system_id', 'pid', 'status', 'sort', 'menu_show'], 'integer'],
+            [['create_at', 'update_at'], 'safe'],
             [['name', 'icon'], 'string', 'max' => 60],
             [['title', 'remark'], 'string', 'max' => 50],
             [['href'], 'string', 'max' => 255],
+            [['system_id'], 'exist', 'skipOnError' => true, 'targetClass' => System::className(), 'targetAttribute' => ['system_id' => 'system_id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'rule_id' => 'Rule ID',
+            'system_id' => 'System ID',
             'name' => 'Name',
             'title' => 'Title',
+            'href' => 'Href',
             'pid' => 'Pid',
             'status' => 'Status',
             'remark' => 'Remark',
-            'href' => 'Href',
             'sort' => 'Sort',
             'menu_show' => 'Menu Show',
             'icon' => 'Icon',
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
+            'create_at' => 'Create At',
+            'update_at' => 'Update At',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAccesses()
+    public function getRoleRules()
     {
-        return $this->hasMany(Access::className(), ['rule_id' => 'rule_id']);
+        return $this->hasMany(RoleRule::className(), ['rule_id' => 'rule_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSystem()
+    {
+        return $this->hasOne(System::className(), ['system_id' => 'system_id']);
     }
 
     /**
@@ -84,7 +95,7 @@ class Rule extends \yii\db\ActiveRecord
      * @throws \yii\db\StaleObjectException
      * 根据rule_id删除
      */
-    public function deleteByRuleId($rule_id)
+    public  static function deleteByRuleId($rule_id)
     {
         $tr = Yii::$app->db->beginTransaction();
         try {
@@ -93,10 +104,10 @@ class Rule extends \yii\db\ActiveRecord
             (new Access())->deleteByCondition(["rule_id" => $rule_id]);
 
             //2、删除use_function记录
-            (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
+           // (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
 
             //3、删除节点记录
-            $query = Rule::findOne($rule_id)->delete();
+            $query = Rule::findOne(["rule_id"=>$rule_id])->delete();
 
             $tr->commit();
             return $query;
@@ -183,6 +194,13 @@ class Rule extends \yii\db\ActiveRecord
                         //获取用户授权状态
                         $access_model = new Access();
                         $access_status = $access_model->auth($id, $rule_list[$s]['name'], $module_id) == true ? 1 : 0;
+
+//                        //判断是否为常用菜单
+//                        if (UsedFunctions::find()->where(["user_id" => $id, "rule_id" => $rule_list[$s]['rule_id']])->select(["id"])->one()) {
+//                            $rule_list[$s]['is_used_functions'] = 1;
+//                        } else {
+//                            $rule_list[$s]['is_used_functions'] = 0;
+//                        }
                     }
                     $rule_list[$s]['access_status'] = $access_status;
 
@@ -201,6 +219,12 @@ class Rule extends \yii\db\ActiveRecord
                 $rule_list[$rk]['child_rules'] = $this->getRulesTree($id, $type, $menu_show, $status, $rule_list[$rk]['rule_id'], $fields, $is_fifter, $module_id, $sort);
                 //判断是否为特殊菜单,true：展示，false：不展示  //
                 if ($menu_show == 1) {
+//                    //判断路由在当前时间内可否作为菜单显示
+//                    if (in_array($rv['name'], Yii::$app->params['taskRoute'])) {
+//                        if (!(Task::menuFilters($rv['name'], $id))) {//true：展示，false：不展示
+//                            unset($rule_list[$rk]);
+//                        }
+//                    }
 
                     if ($type == 1) {
                         // 非最后一层级的目录，但用户没有该层级下子目录的权限，则移除该根目录。
@@ -295,7 +319,7 @@ class Rule extends \yii\db\ActiveRecord
     {
 
         try {
-            $rule = Rule::findOne($rule_id);
+            $rule = Rule::findOne(["rule_id"=>$rule_id]);
             if ($rule) {
                 if ($rule['pid'] > 0) {
                     $pid_arr[] = $rule['pid'];
