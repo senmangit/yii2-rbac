@@ -1,6 +1,6 @@
 {
   "name": "senman/yii2-rbac-manager",
-  "description": "yii2的RBAC,基于角色的权限控制，扁平结构，容许一个用户有一个或多个角色的灵活配置，含菜单等等。",
+  "description": "yii2的RBAC,基于角色的权限控制，扁平结构，容许一个用户有一个或多个角色的灵活配置，含菜单等",
   "license": "MIT",
   "keywords": ["yii2","rbac","用户","权限","manager"],
   "homepage": "https://www.monqin.com",
