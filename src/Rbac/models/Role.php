@@ -122,7 +122,7 @@ class Role extends \yii\db\ActiveRecord
      * @return int
      * 根据角色ID条件进行删除
      */
-    public function deleteByRoleId($role_id)
+    public static function deleteByRoleId($role_id)
     {
         $tr = \Yii::$app->db->beginTransaction();
         try {
