@@ -95,19 +95,19 @@ class Rule extends \yii\db\ActiveRecord
      * @throws \yii\db\StaleObjectException
      * 根据rule_id删除
      */
-    public  static function deleteByRuleId($rule_id)
+    public static function deleteByRuleId($rule_id)
     {
         $tr = Yii::$app->db->beginTransaction();
         try {
 
             //1、删除access记录
-            (new Access())->deleteByCondition(["rule_id" => $rule_id]);
+            RoleRule::deleteByCondition(["rule_id" => $rule_id]);
 
             //2、删除use_function记录
-           // (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
+            // (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
 
             //3、删除节点记录
-            $query = Rule::findOne(["rule_id"=>$rule_id])->delete();
+            $query = Rule::findOne(["rule_id" => $rule_id])->delete();
 
             $tr->commit();
             return $query;
@@ -273,7 +273,6 @@ class Rule extends \yii\db\ActiveRecord
             }
 
         }
-
         if (!in_array($rule_id, $ids)) {
             $ids[] = $rule_id;
         }
@@ -283,7 +282,7 @@ class Rule extends \yii\db\ActiveRecord
 
 
     /**
-     * 查询首页-操作日志下拉列表（方案2）
+     * 获取模块列表（方案2）
      * @return array|\yii\db\ActiveRecord[]
      */
     public static function getModuleNameLists()
@@ -319,7 +318,7 @@ class Rule extends \yii\db\ActiveRecord
     {
 
         try {
-            $rule = Rule::findOne(["rule_id"=>$rule_id]);
+            $rule = Rule::findOne(["rule_id" => $rule_id]);
             if ($rule) {
                 if ($rule['pid'] > 0) {
                     $pid_arr[] = $rule['pid'];
