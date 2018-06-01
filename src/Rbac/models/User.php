@@ -13,18 +13,56 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
-
-
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    /**
+     * 获取配置的Rbac参数
+     */
+    public static function getRbacParam()
+    {
+        return Yii::$app->params['rbac_manager'];
+    }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
-        return "user";
+        $model_parm = self::getRbacParam();
+        $user_model_parm = $model_parm['user_model'];
+        return $user_model_parm::tableName();
     }
+
+
+    /**
+     * @return mixed
+     * 获取用户状态
+     */
+    public static function getStatusVal()
+    {
+        $parm = self::getRbacParam();
+        return $parm['user_status'];
+    }
+
+    /**
+     * @return mixed
+     * 获取删除的值
+     */
+
+    public static function getDelVal()
+    {
+        $status_val = self::getStatusVal();
+        return $status_val['status_deleted'];
+    }
+
+    /**
+     * @return mixed
+     * 获取状态的值
+     */
+    public static function getActiveVal()
+    {
+        $status_val = self::getStatusVal();
+        return $status_val['status_active'];
+    }
+
 
     /**
      * @inheritdoc
@@ -64,7 +102,7 @@ class User extends \yii\db\ActiveRecord
     public static function is_valid($user_id)
     {
         $user = self::getUserById($user_id, ['status']);
-        if ($user['status'] == self::STATUS_ACTIVE) {
+        if ($user['status'] == self::getActiveVal()) {
             return true;
         } else {
             return false;
