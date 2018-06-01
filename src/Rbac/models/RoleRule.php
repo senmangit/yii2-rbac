@@ -16,8 +16,6 @@ use Yii;
  */
 class RoleRule extends \yii\db\ActiveRecord
 {
-    public $admin_id = [];
-
     /**
      * {@inheritdoc}
      */
@@ -76,11 +74,11 @@ class RoleRule extends \yii\db\ActiveRecord
      */
     public static function getAccess($user_id, $system_id)
     {
-        //  try {
-        $access_arr = User::getAccessByUserId($user_id, 0, $system_id);
-//        } catch (\Exception $exception) {
-//            $access_arr = [];
-//        }
+        try {
+            $access_arr = User::getAccessByUserId($user_id, 0, $system_id);
+        } catch (\Exception $exception) {
+            $access_arr = [];
+        }
         return $access_arr;
     }
 
@@ -102,10 +100,15 @@ class RoleRule extends \yii\db\ActiveRecord
      */
     public static function is_super_admin($user_id)
     {
-        $role_rule_model = new RoleRule();
-        if (in_array($user_id, $role_rule_model->admin_id)) {
-            return true;
-        } else {
+        try {
+            $parms = Yii::$app->params['rbac_manager'];
+            $role_rule_model = new RoleRule();
+            if (in_array($user_id, $parms["super_admin_id"])) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\Exception $exception) {
             return false;
         }
     }

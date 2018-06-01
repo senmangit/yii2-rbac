@@ -77,8 +77,7 @@ class Role extends \yii\db\ActiveRecord
         $id_arr = self::primaryKey();
         return $id_arr[0];
     }
-
-    ////////////////////////////////////必须函数////////////////////////
+    
 
     /**
      * @return \yii\db\ActiveQuery
