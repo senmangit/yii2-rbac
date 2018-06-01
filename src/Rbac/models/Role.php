@@ -27,7 +27,7 @@ class Role extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%role}}';
+        return '{{role}}';
     }
 
     /**
@@ -68,6 +68,16 @@ class Role extends \yii\db\ActiveRecord
         return $this->hasMany(RequirementApprovalProcess::className(), ['opreator_role_id' => 'role_id']);
     }
 
+
+    /**
+     * @return mixed
+     * 获取当前模型的主键ID
+     */
+    public static function getRolePrimaryKey()
+    {
+        $id_arr = self::primaryKey();
+        return $id_arr[0];
+    }
 
     ////////////////////////////////////必须函数////////////////////////
 
@@ -170,8 +180,9 @@ class Role extends \yii\db\ActiveRecord
                 "status" => $status,
                 "system_id" => $system_id,
             ];
+
             //获取该角色的基本信息
-            $role = Role::getRoleByCondition($condition, ['role_id']);
+            $role = Role::find()->where($condition)->select(['role_id'])->one();
             if ($role) {
                 $role_rule = $role->getRoleRules()->select(['rule_id'])->all();
                 $rule_arr = [];
@@ -183,7 +194,7 @@ class Role extends \yii\db\ActiveRecord
                     }
                 }
                 $rule_arr = @array_flip(array_flip($rule_arr));//获取到所有该角色的所有节点ID
-                $rules = Rule::find()->where(['status' => 0, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
+                $rules = Rule::find()->where(['status' => $status, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
                 if ($rules) {
                     foreach ($rules as $rk => $rv) {
                         $access[] = $rv[$field];
@@ -207,7 +218,6 @@ class Role extends \yii\db\ActiveRecord
     {
         return Role::find()->select($fields)->where(["role_id" => $id])->find();
     }
-
     /**
      * @param $condition
      * @param string $fields

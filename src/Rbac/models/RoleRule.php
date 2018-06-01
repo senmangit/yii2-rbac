@@ -23,7 +23,7 @@ class RoleRule extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%role_rule}}';
+        return '{{role_rule}}';
     }
 
     /**
@@ -76,11 +76,11 @@ class RoleRule extends \yii\db\ActiveRecord
      */
     public static function getAccess($user_id, $system_id)
     {
-        try {
-            $access_arr = User::getAccessByUserId($user_id, $system_id);
-        } catch (\Exception $exception) {
-            $access_arr = [];
-        }
+        //  try {
+        $access_arr = User::getAccessByUserId($user_id, 0, $system_id);
+//        } catch (\Exception $exception) {
+//            $access_arr = [];
+//        }
         return $access_arr;
     }
 
@@ -128,31 +128,18 @@ class RoleRule extends \yii\db\ActiveRecord
      */
 
 
-    public static function auth($user_id, $pathInfo = null, $module_id, $system_id)
+    public static function auth($user_id, $pathInfo = null, $module_id = "", $system_id)
     {
 
         try {
-            $user = User::getUserById($user_id);
-            if ($user) {
-
-                if ($user['status'] != 0) {
-                    return 402;
-                }
-                if ($user['delete_flag'] != 0) {
-                    return 403;
-                }
-
-
-            } else {
-                return 401;
+            //判断用户是否有效
+            if (!User::is_valid($user_id)) {
+                return 402;
             }
-
-
             //判断是否是超级管理员
             if (self::is_super_admin($user_id)) {
                 return 400;
             }
-
             if ($pathInfo == null) {
                 $pathInfo = Yii::$app->request->pathInfo;
             }
@@ -166,7 +153,6 @@ class RoleRule extends \yii\db\ActiveRecord
                 if (in_array($rule_reg, self::getAccess($user_id, $system_id))) {//判断该路由是否在该用户的所属权限列表内
                     return 400;
                 }
-
             }
 
         } catch (\Exception $exception) {

@@ -31,7 +31,7 @@ class Rule extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%rule}}';
+        return '{{rule}}';
     }
 
     /**

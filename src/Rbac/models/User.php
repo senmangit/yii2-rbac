@@ -8,28 +8,22 @@ use Yii;
  * This is the model class for table "{{%users}}".
  *
  * @property int $user_id 自增ID
- * @property int $delete_flag 删除标志位，0：未删除，1：已删除
- * @property int $status 用户状态，0：启用，1：禁用 ，2：禁用
+ * @property int $status 用户状态，10：启用，0：禁用
  * @property UserRole[] $userRoles
  */
 class User extends \yii\db\ActiveRecord
 {
 
-    public $table_name = "user";
 
-    public function getTableName()
-    {
-        return strtolower($this->table_name);
-    }
-
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
 
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        $model = new User();
-        return $model->table_name;
+        return "user";
     }
 
     /**
@@ -39,8 +33,6 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['status'], 'integer'],
-            [['delete_flag'], 'integer'],
-
         ];
     }
 
@@ -50,8 +42,7 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => 'User ID',
-            'delete_flag' => 'Delete Flag',
+            self::getUserPrimaryKey() => 'User ID',
             'status' => 'Status',
 
         ];
@@ -62,9 +53,34 @@ class User extends \yii\db\ActiveRecord
      */
     public function getUserRoles()
     {
-        return $this->hasMany(UserRole::className(), ['user_id' => 'user_id']);
+        return $this->hasMany(UserRole::className(), ["user_id" => User::getUserPrimaryKey()]);
     }
 
+    /**
+     * @param $user_id
+     * @return bool
+     * 判断用户是否有效
+     */
+    public static function is_valid($user_id)
+    {
+        $user = self::getUserById($user_id, ['status']);
+        if ($user['status'] == self::STATUS_ACTIVE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * @return mixed
+     * 获取当前模型的主键ID
+     */
+    public static function getUserPrimaryKey()
+    {
+        $id_arr = self::primaryKey();
+        return $id_arr[0];
+    }
 
     /**
      * 根据id获取用户信息
@@ -74,9 +90,9 @@ class User extends \yii\db\ActiveRecord
      */
     public static function getUserById($userId, $fields = ['*'])
     {
-        $id = User::primaryKey();
+        $id = self::getUserPrimaryKey();
         $condition = [
-            "$id" => $userId,
+            $id => $userId,
         ];
         return static::find()->where($condition)->select($fields)->one();
     }
@@ -87,7 +103,7 @@ class User extends \yii\db\ActiveRecord
      * @return array
      * 通过用户ID获取所有权限节点名称
      */
-    public static function getAccessByUserId($user_id, $system_id)
+    public static function getAccessByUserId($user_id, $status, $system_id)
     {
 
         $access = [];
@@ -98,7 +114,8 @@ class User extends \yii\db\ActiveRecord
                 if ($roles) {
                     foreach ($roles as $k => $v) {
                         if ($v > 0) {
-                            $rules_arr = Role::getAccessByRoleId($v, "name", 0, $system_id);
+                            //判断角色状态
+                            $rules_arr = Role::getAccessByRoleId($v, "name", $status, $system_id);//获取所有角色的名称
                             if ($rules_arr) {
                                 $access[] = $rules_arr;
                             }
@@ -108,7 +125,6 @@ class User extends \yii\db\ActiveRecord
                     }
                 }
             }
-
             if ($access) {
                 foreach ($access as $ak => $av) {
                     if (is_array($av) && !empty($av)) {
@@ -124,6 +140,7 @@ class User extends \yii\db\ActiveRecord
         } catch (\Exception $exception) {
             return $access_temp;
         }
+
         return $access_temp;
 
     }
@@ -134,18 +151,16 @@ class User extends \yii\db\ActiveRecord
      * @return array|null
      * 通过用户ID获取子系统所有所属角色的ID列表
      */
-    public function getRolesByUserId($user_id, $system_id)
+    public static function getRolesByUserId($user_id, $system_id)
     {
         $role_arr = [];
+        $user_primary_id = self::getUserPrimaryKey();
         try {
             if ($user_id > 0) {
-                $user = User::getUserById($user_id, [User::primaryKey()]);
+                $user = User::getUserById($user_id, [$user_primary_id]);
                 if ($user) {
-                    $condition = [
-                        "status" => 0,
-                        "system_id" => $system_id,
-                    ];
-                    $roles = $user->getUserRoles()->where($condition)->select([Role::primaryKey()])->asArray()->all();
+                    $role_prikey_id = Role::getRolePrimaryKey();
+                    $roles = $user->getUserRoles()->select([$role_prikey_id])->asArray()->all();
                     if ($roles) {
                         foreach ($roles as $k => $v) {
                             if ($v['role_id'] > 0) {

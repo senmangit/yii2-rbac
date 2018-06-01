@@ -26,7 +26,7 @@ class System extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%system}}';
+        return '{{system}}';
     }
 
     /**
