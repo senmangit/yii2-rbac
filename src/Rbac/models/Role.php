@@ -61,15 +61,6 @@ class Role extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRequirementApprovalProcesses()
-    {
-        return $this->hasMany(RequirementApprovalProcess::className(), ['opreator_role_id' => 'role_id']);
-    }
-
-
-    /**
      * @return mixed
      * 获取当前模型的主键ID
      */
