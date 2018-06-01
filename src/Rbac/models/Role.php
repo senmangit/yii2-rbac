@@ -15,7 +15,6 @@ use Yii;
  * @property string $created_at 创建时间
  * @property string $updated_at 更新时间
  *
- * @property RequirementApprovalProcess[] $requirementApprovalProcesses
  * @property System $system
  * @property RoleRule[] $roleRules
  * @property UserRole[] $userRoles
