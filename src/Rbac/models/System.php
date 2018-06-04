@@ -3,6 +3,7 @@
 namespace Rbac\models;
 
 use Yii;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "system".
@@ -77,7 +78,43 @@ class System extends \yii\db\ActiveRecord
         return $this->hasMany(Rule::className(), ['system_id' => 'system_id']);
     }
 
+    //获取系统分页列表
+    public static function listOfPagin($page, $limit = 20, $condition = [])
+    {
+        //构造查询
+        $query = System::find();
+        if ($condition) {
+            $query = $query->where($condition);
+        }
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
 
+        //处理参数
+        // $limit = input('limit', $pages->limit);
+        // $page = intval(input('page', $pages->page));
 
+        if (!($limit >= 0)) {
+            $limit = 20;
+        }
 
+        //获取数据
+        $list = $query->offset(($page - 1) * $limit)
+            ->limit($limit)
+            ->all();
+
+        //返回数据
+        return apiSuccess(['list' => $list, 'pages' => $pages]);
+    }
+
+    /**
+     * 获取角色列表（下拉列表框）
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getSystemList($condition=['status' => 0],$fields="*")
+    {
+        return static::find()
+            ->select($fields)
+            ->where($condition)
+            ->all();
+    }
 }

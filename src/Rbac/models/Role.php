@@ -3,6 +3,7 @@
 namespace Rbac\models;
 
 use Yii;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "role".
@@ -77,7 +78,7 @@ class Role extends \yii\db\ActiveRecord
         $id_arr = self::primaryKey();
         return $id_arr[0];
     }
-    
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -134,8 +135,8 @@ class Role extends \yii\db\ActiveRecord
     {
         $tr = \Yii::$app->db->beginTransaction();
         try {
-            //1、删除user_role下的记录
-            UserRole::deleteByCondition(["role_id" => $role_id]);
+            //1、删除role_rule下的记录
+            RoleRule::deleteByCondition(["role_id" => $role_id]);
             //2、删除user_role下的记录
             UserRole::deleteByCondition(["role_id" => $role_id]);
             //3、删除role表记录
@@ -216,6 +217,7 @@ class Role extends \yii\db\ActiveRecord
     {
         return Role::find()->select($fields)->where(["role_id" => $id])->find();
     }
+
     /**
      * @param $condition
      * @param string $fields
@@ -227,4 +229,81 @@ class Role extends \yii\db\ActiveRecord
         return Role::find()->select($fields)->where($condition)->all();
     }
 
+
+    /**
+     * @param $data
+     * @return bool
+     * 新增角色
+     */
+    public static function add($data)
+    {
+        try {
+            $role_model = new Role();
+            $role = $role_model->getRole(["name" => $data['name']]);
+            if ($role) {
+                return false;
+            }
+            $temp = [
+                "Role" => $data
+            ];
+            if (!$role_model->load($temp, 'Role')) {
+                return false;
+            }
+            if (!$role_model->save()) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (\Exception $exception) {
+            return false;
+        }
+
+
+    }
+
+    //获取角色信息
+    public function getRole($condition, $field = "*")
+    {
+        return Role::find()->where($condition)->select($field)->one();
+    }
+
+    //获取角色分页列表
+    public static function listOfPagin($page, $limit = 20, $condition = [])
+    {
+        //构造查询
+        $query = Role::find();
+        if ($condition) {
+            $query = $query->where($condition);
+        }
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+
+        //处理参数
+        // $limit = input('limit', $pages->limit);
+        // $page = intval(input('page', $pages->page));
+
+        if (!($limit >= 0)) {
+            $limit = 20;
+        }
+
+        //获取数据
+        $list = $query->offset(($page - 1) * $limit)
+            ->limit($limit)
+            ->all();
+
+        //返回数据
+        return apiSuccess(['list' => $list, 'pages' => $pages]);
+    }
+
+    /**
+     * 获取角色列表（下拉列表框）
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getRoleList($condition=['status' => 0],$fields=['role_id', 'name'])
+    {
+        return static::find()
+            ->select($fields)
+            ->where($condition)
+            ->all();
+    }
 }

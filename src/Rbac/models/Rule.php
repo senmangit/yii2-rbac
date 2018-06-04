@@ -3,6 +3,7 @@
 namespace Rbac\models;
 
 use Yii;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "rule".
@@ -136,7 +137,6 @@ class Rule extends \yii\db\ActiveRecord
             $rule_list = [];
             $condition = [];
             $condition['pid'] = $pid;
-            $condition['system_id'] = $system_id;
 
             //type=1即ID为用户ID时，此ID必须大于0
             if (!$id > 0 && $type != 0) {
@@ -150,7 +150,9 @@ class Rule extends \yii\db\ActiveRecord
             if ($status != null) {
                 $condition['status'] = $status;
             }
-
+            if ($system_id > 0) {
+                $condition['system_id'] = $system_id;
+            }
 
             $base_fields = ['system_id', 'rule_id', 'pid', 'name', 'title', 'href', 'icon', 'status', 'menu_show', 'sort'];
 
@@ -174,7 +176,7 @@ class Rule extends \yii\db\ActiveRecord
 
                 }
             }
-
+            
             //循环检查授权状态，并赋值
             if ($rule_list) {
                 foreach ($rule_list as $s => $sv) {
@@ -331,5 +333,85 @@ class Rule extends \yii\db\ActiveRecord
         }
         return @array_flip(array_flip($pid_arr));
     }
+
+
+    /**
+     * @param $data
+     * @return bool|void
+     * 新增规则
+     */
+    public static function add($data)
+    {
+        try {
+            if (!($data['system_id'] > 0)) {
+                return false;
+            }
+            $rule = Rule::findOne(["name" => $data['name'], "href" => $data['href']]);
+            if ($rule) {
+                return false;
+            }
+            if ($data['title'] == "") {
+                return false;
+            }
+            if (!in_array($data['status'], [0, 1])) {//状态，0：启用，1：禁用
+                return false;
+            }
+            if (!in_array($data['menu_show'], [0, 1])) {//是否显示菜单，0：不显示，1：显示
+                return false;
+            }
+            if ($data['pid'] > 0) {
+                $rule_pid = Rule::findOne(["rule_id" => $pid]);
+                if (!$rule_pid) {
+                    return false;
+                }
+            }
+
+            $rule_model = new Rule();
+            $temp = [
+                "Rule" => $data
+            ];
+            if (!$rule_model->load($temp, 'Rule')) {
+                return false;
+            }
+            if (!$rule_model->save()) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (\Exception $exception) {
+            return false;
+        }
+    }
+
+
+    //获取规则分页列表
+    public static function listOfPagin($page, $limit = 20, $system_id = null)
+    {
+        //构造查询
+        $query = Rule::find();
+        if ($system_id > 0) {
+            $query = $query->where(["system_id" => $system_id]);
+        }
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+
+        //处理参数
+        // $limit = input('limit', $pages->limit);
+        // $page = intval(input('page', $pages->page));
+
+        if (!($limit >= 0)) {
+            $limit = 20;
+        }
+
+        //获取数据
+        $list = $query->offset(($page - 1) * $limit)
+            ->limit($limit)
+            ->all();
+
+        //返回数据
+        return apiSuccess(['list' => $list, 'pages' => $pages]);
+    }
+
 
 }

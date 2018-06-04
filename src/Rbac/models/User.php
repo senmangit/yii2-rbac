@@ -3,6 +3,7 @@
 namespace Rbac\models;
 
 use Yii;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "{{%users}}".
@@ -202,7 +203,11 @@ class User extends \yii\db\ActiveRecord
                     if ($roles) {
                         foreach ($roles as $k => $v) {
                             if ($v['role_id'] > 0) {
-                                $role_arr[] = $v['role_id'];
+                                //判断改角色是否在改系统ID下
+                                if (Role::findOne(["role_id" => $v['role_id'], "system_id" => $system_id])) {
+                                    $role_arr[] = $v['role_id'];
+                                }
+
                             }
                         }
                     }
@@ -214,5 +219,50 @@ class User extends \yii\db\ActiveRecord
         return @array_flip(array_flip($role_arr));
     }
 
+    //获取用户分页列表
+    public static function listOfPagin($page, $limit = 20, $condition = [])
+    {
+        //构造查询
+        $query = User::find();
+        if ($condition) {
+            $query = $query->where($condition);
+        }
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+
+        //处理参数
+        // $limit = input('limit', $pages->limit);
+        // $page = intval(input('page', $pages->page));
+
+        if (!($limit >= 0)) {
+            $limit = 20;
+        }
+
+        //获取数据
+        $list = $query->offset(($page - 1) * $limit)
+            ->limit($limit)
+            ->asArray()
+            ->all();
+
+        if ($list) {
+            foreach ($list as $k => $v) {
+                $roles = [];
+                //获取每个用户对应的角色信息
+                if ($v) {
+                    $roles_id = UserRole::find()->where(["user_id" => $v])->all();
+
+                    $role_temp = [];
+                    foreach ($roles_id as $rk => $rv) {
+                        $role_temp[] = Role::findOne(["role_id" => $rv['role_id']]);
+                    }
+                    $list[$k]['role_list'] = $role_temp;
+                }
+            }
+
+        }
+
+        //返回数据
+        return apiSuccess(['list' => $list, 'pages' => $pages]);
+    }
 }
 
