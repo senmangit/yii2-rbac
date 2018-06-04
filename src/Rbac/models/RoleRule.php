@@ -102,7 +102,6 @@ class RoleRule extends \yii\db\ActiveRecord
     {
         try {
             $parms = Yii::$app->params['rbac_manager'];
-            $role_rule_model = new RoleRule();
             if (in_array($user_id, $parms["super_admin_id"])) {
                 return true;
             } else {
@@ -192,63 +191,63 @@ class RoleRule extends \yii\db\ActiveRecord
     public static function access($role_id, array $rule_id_arr)
     {
         $transaction = RoleRule::getDb()->beginTransaction();
-        //  try {
-        $rule_ids_temp_arr = [];
-        $rule_model = new Rule();
-        if (!is_array($rule_id_arr)) {
-            return false;
-        } else {
-            if ($rule_id_arr) {
-                foreach ($rule_id_arr as $k => $v) {
-                    if ($v > 0) {
-                        if (!$rule_model::findOne(["rule_id" => $v])) {
-                            return false;
-                        } else {
-                            $rule_ids = Rule::getRootByRuleId($v);
-                            foreach ($rule_ids as $rk => $rv) {
-                                $rule_ids_temp_arr[] = $rv;
+        try {
+            $rule_ids_temp_arr = [];
+            $rule_model = new Rule();
+            if (!is_array($rule_id_arr)) {
+                return false;
+            } else {
+                if ($rule_id_arr) {
+                    foreach ($rule_id_arr as $k => $v) {
+                        if ($v > 0) {
+                            if (!$rule_model::findOne(["rule_id" => $v])) {
+                                return false;
+                            } else {
+                                $rule_ids = Rule::getRootByRuleId($v);
+                                foreach ($rule_ids as $rk => $rv) {
+                                    $rule_ids_temp_arr[] = $rv;
+                                }
                             }
+                        } else {
+                            return false;
                         }
-                    } else {
-                        return false;
                     }
                 }
             }
-        }
-        $rule_id_arr = array_flip(array_flip(array_merge($rule_ids_temp_arr, $rule_id_arr)));
+            $rule_id_arr = array_flip(array_flip(array_merge($rule_ids_temp_arr, $rule_id_arr)));
 
-        if (!($role_id > 0)) {
-            return false;
-        }
-        $role = Role::findOne(["role_id" => $role_id]);
+            if (!($role_id > 0)) {
+                return false;
+            }
+            $role = Role::findOne(["role_id" => $role_id]);
 
-        if ($role) {
-            $rule_list = Role::getAccessByRoleId($role_id, "rule_id", 0, $role['system_id']);
-            $result_add = array_diff($rule_id_arr, $rule_list);//需要增加的
-            $result_del = array_diff($rule_list, $rule_id_arr);//需要减少的
+            if ($role) {
+                $rule_list = Role::getAccessByRoleId($role_id, "rule_id", 0, $role['system_id']);
+                $result_add = array_diff($rule_id_arr, $rule_list);//需要增加的
+                $result_del = array_diff($rule_list, $rule_id_arr);//需要减少的
 //                    //删除差异
 //              Access::deleteAll('role_id = :role_id AND rule_id in (:rule_id)', [':role_id' => $role_id, ':rule_id' => $result_del]);
-            RoleRule::deleteAll('role_id = :role_id ', [':role_id' => $role_id]);
-            //新增
-            if ($rule_id_arr) {
-                foreach ($rule_id_arr as $k => $v) {
-                    $access_model = new RoleRule();
-                    $access_model->role_id = $role_id;
-                    $access_model->rule_id = $v;
-                    $access_model->save();
+                RoleRule::deleteAll('role_id = :role_id ', [':role_id' => $role_id]);
+                //新增
+                if ($rule_id_arr) {
+                    foreach ($rule_id_arr as $k => $v) {
+                        $access_model = new RoleRule();
+                        $access_model->role_id = $role_id;
+                        $access_model->rule_id = $v;
+                        $access_model->save();
+                    }
                 }
-            }
 
-            $all_access_add = [];
-            foreach ($result_add as $rk => $rv) {
-                $rule_info = Rule::find()->where(["rule_id" => $rv])->select(['title'])->one();
-                $all_access_add[] = $rule_info['title'];
-            }
-            $all_access_del = [];
-            foreach ($result_del as $rk => $rv) {
-                $rule_info = Rule::find()->where(["rule_id" => $rv])->select(['title'])->one();
-                $all_access_del[] = $rule_info['title'];
-            }
+                $all_access_add = [];
+                foreach ($result_add as $rk => $rv) {
+                    $rule_info = Rule::find()->where(["rule_id" => $rv])->select(['title'])->one();
+                    $all_access_add[] = $rule_info['title'];
+                }
+                $all_access_del = [];
+                foreach ($result_del as $rk => $rv) {
+                    $rule_info = Rule::find()->where(["rule_id" => $rv])->select(['title'])->one();
+                    $all_access_del[] = $rule_info['title'];
+                }
 
 //                //记录新增日志
 //                if ($all_access_add) {
@@ -264,21 +263,21 @@ class RoleRule extends \yii\db\ActiveRecord
 //                }
 
 
-            $transaction->commit();
-            return true;
-        } else {
+                $transaction->commit();
+                return true;
+            } else {
+                return false;
+            }
+
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            return false;
+
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
             return false;
         }
-
-
-//        } catch (\Exception $e) {
-//            $transaction->rollBack();
-//            return false;
-//
-//        } catch (\Throwable $e) {
-//            $transaction->rollBack();
-//            return false;
-//        }
 
 
     }
