@@ -12,11 +12,6 @@ use yii\data\Pagination;
  * @property int $system_id 子系统唯一标志
  * @property string $name 角色名称
  * @property int $status 状态，0：启用，1：不启用
- * @property string $remark 备注
- * @property string $created_at 创建时间
- * @property string $updated_at 更新时间
- *
- * @property RequirementApprovalProcess[] $requirementApprovalProcesses
  * @property System $system
  * @property RoleRule[] $roleRules
  * @property UserRole[] $userRoles
@@ -54,9 +49,6 @@ class Role extends \yii\db\ActiveRecord
             'system_id' => 'System ID',
             'name' => 'Name',
             'status' => 'Status',
-            'remark' => 'Remark',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
         ];
     }
 
