@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -309,7 +308,7 @@
       <workItem from="1527579244007" duration="1520000" />
       <workItem from="1527756230486" duration="4859000" />
       <workItem from="1527812904777" duration="3403000" />
-      <workItem from="1528071090596" duration="4959000" />
+      <workItem from="1528071090596" duration="4994000" />
     </task>
     <task id="LOCAL-00001" summary="修改模型">
       <created>1527580563728</created>
@@ -427,7 +426,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16235000" />
+    <option name="totallyTimeSpent" value="16270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
