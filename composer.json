@@ -19,7 +19,7 @@
   "support": {
     "issues": "https://github.com/senmangit/yii2-rbac-manager"
   },
-
+  "minimum-stability": "dev",
   "require": {
     "php": ">=5.6.0"
   },
