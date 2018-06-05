@@ -102,6 +102,7 @@ class RoleRule extends \yii\db\ActiveRecord
     {
         try {
             $parms = Yii::$app->params['rbac_manager'];
+            $role_rule_model = new RoleRule();
             if (in_array($user_id, $parms["super_admin_id"])) {
                 return true;
             } else {
@@ -152,6 +153,18 @@ class RoleRule extends \yii\db\ActiveRecord
                     unset($path_arr[0]);
                 }
                 $rule_reg = @strtolower(implode('/', $path_arr));
+
+                $parms = \Yii::$app->params;
+                try {
+                    $except_route_config_arr = $parms['rbac_manager']['except_route'];
+                    if (in_array($rule_reg, $except_route_config_arr)) {
+                        return 400;
+                    }
+                } catch (\Exception $e) {
+                    //不做任何处理
+                }
+
+
                 if (in_array($rule_reg, self::getAccess($user_id, $system_id))) {//判断该路由是否在该用户的所属权限列表内
                     return 400;
                 }
