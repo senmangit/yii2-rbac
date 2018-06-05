@@ -139,15 +139,15 @@ class Rule extends \yii\db\ActiveRecord
             $condition['pid'] = $pid;
 
             //type=1即ID为用户ID时，此ID必须大于0
-            if (!$id > 0 && $type != 0) {
+            if (!($id > 0) && $type != 0) {
                 return $rule_list;
             }
 
-            if ($menu_show != null) {
+            if (!is_null($menu_show)) {
                 $condition['menu_show'] = $menu_show;
             }
 
-            if ($status != null) {
+            if (!is_null($status)) {
                 $condition['status'] = $status;
             }
             if ($system_id > 0) {
@@ -156,7 +156,7 @@ class Rule extends \yii\db\ActiveRecord
 
             $base_fields = ['system_id', 'rule_id', 'pid', 'name', 'title', 'href', 'icon', 'status', 'menu_show', 'sort'];
 
-            if ($fields != null) {
+            if (!is_null($fields)) {
                 $fields = array_merge($fields, $base_fields);
             } else {
                 $fields = $base_fields;
@@ -176,7 +176,7 @@ class Rule extends \yii\db\ActiveRecord
 
                 }
             }
-            
+
             //循环检查授权状态，并赋值
             if ($rule_list) {
                 foreach ($rule_list as $s => $sv) {
