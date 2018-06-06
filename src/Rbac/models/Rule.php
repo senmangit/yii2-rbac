@@ -130,13 +130,16 @@ class Rule extends \yii\db\ActiveRecord
      * @return array
      * 获取权限节点树
      */
-    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id, $sort = 1, $system_id)
+    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = null, $fields = null, $is_fifter = 0, $module_id, $sort = 1, $system_id)
     {
 
         try {
             $rule_list = [];
             $condition = [];
-            $condition['pid'] = $pid;
+
+            if (!is_null($pid)) {
+                $condition['pid'] = $pid;
+            }
 
             //type=1即ID为用户ID时，此ID必须大于0
             if (!($id > 0) && $type != 0) {
