@@ -410,7 +410,7 @@ class Rule extends \yii\db\ActiveRecord
             ->all();
 
         //返回数据
-        return apiSuccess(['list' => $list, 'pages' => $pages]);
+        return ['list' => $list, 'pages' => $pages];
     }
 
 
