@@ -360,7 +360,7 @@ class Rule extends \yii\db\ActiveRecord
                 return false;
             }
             if ($data['pid'] > 0) {
-                $rule_pid = Rule::findOne(["rule_id" => $pid]);
+                $rule_pid = Rule::findOne(["rule_id" => $data['pid']]);
                 if (!$rule_pid) {
                     return false;
                 }
