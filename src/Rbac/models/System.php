@@ -148,9 +148,9 @@ class System extends \yii\db\ActiveRecord
      */
     public static function getSystemById($system_id, $fields = ['*'])
     {
-        $id = self::getPrimaryKey();
+       // $id = self::getPrimaryKey();
         $condition = [
-            $id[0] => $system_id,
+            "system_id"=> $system_id,
         ];
         return static::find()->where($condition)->select($fields)->one();
     }
