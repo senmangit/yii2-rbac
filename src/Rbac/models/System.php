@@ -148,9 +148,9 @@ class System extends \yii\db\ActiveRecord
      */
     public static function getUserById($system_id, $fields = ['*'])
     {
-        $id = self::getUserPrimaryKey();
+        $id = self::getPrimaryKey();
         $condition = [
-            $id => $userId,
+            $id[0] => $userId,
         ];
         return static::find()->where($condition)->select($fields)->one();
     }
