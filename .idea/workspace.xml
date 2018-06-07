@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="修复bug">
+    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="修改ID">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/Rbac/models/System.php" afterPath="$PROJECT_DIR$/src/Rbac/models/System.php" />
     </list>
@@ -40,9 +40,11 @@
       <file leaf-file-name="System.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/System.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="150" column="9" lean-forward="false" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="-115">
+              <caret line="107" column="51" lean-forward="false" selection-start-line="107" selection-start-column="51" selection-end-line="107" selection-end-column="51" />
+              <folding>
+                <element signature="e#31#39#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -248,7 +250,7 @@
       <workItem from="1528071090596" duration="5630000" />
       <workItem from="1528162726295" duration="2360000" />
       <workItem from="1528252946981" duration="5552000" />
-      <workItem from="1528341839540" duration="5402000" />
+      <workItem from="1528341839540" duration="5618000" />
     </task>
     <task id="LOCAL-00001" summary="修改模型">
       <created>1527580563728</created>
@@ -453,11 +455,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528360956143</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="修改ID">
+      <created>1528362883005</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1528362883005</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30220000" />
+    <option name="totallyTimeSpent" value="30436000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -535,7 +544,8 @@
     <MESSAGE value="修复系统主键错误" />
     <MESSAGE value="修复系统模型参数、注释错误" />
     <MESSAGE value="修复bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复bug" />
+    <MESSAGE value="修改ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改ID" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -911,9 +921,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/System.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="150" column="9" lean-forward="false" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="-115">
+          <caret line="107" column="51" lean-forward="false" selection-start-line="107" selection-start-column="51" selection-end-line="107" selection-end-column="51" />
+          <folding>
+            <element signature="e#31#39#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

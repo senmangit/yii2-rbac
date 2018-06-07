@@ -105,7 +105,7 @@ class System extends \yii\db\ActiveRecord
             ->all();
 
         //返回数据
-        return apiSuccess(['list' => $list, 'pages' => $pages]);
+        return ['list' => $list, 'pages' => $pages];
     }
 
     /**
@@ -148,7 +148,6 @@ class System extends \yii\db\ActiveRecord
      */
     public static function getSystemById($system_id, $fields = ['*'])
     {
-       // $id = self::getPrimaryKey();
         $condition = [
             "system_id"=> $system_id,
         ];
