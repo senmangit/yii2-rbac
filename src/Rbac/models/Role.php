@@ -165,30 +165,32 @@ class Role extends \yii\db\ActiveRecord
     {
         $access = [];
         try {
-            //状态，0：启用，1：不启用
-            $condition = [
-                "role_id" => $role_id,
-                "status" => $status,
-                "system_id" => $system_id,
-            ];
+            if (System::is_valid($system_id)) {
+                //状态，0：启用，1：不启用
+                $condition = [
+                    "role_id" => $role_id,
+                    "status" => $status,
+                    "system_id" => $system_id,
+                ];
 
-            //获取该角色的基本信息
-            $role = Role::find()->where($condition)->select(['role_id'])->one();
-            if ($role) {
-                $role_rule = $role->getRoleRules()->select(['rule_id'])->all();
-                $rule_arr = [];
-                if ($role_rule) {
-                    foreach ($role_rule as $k => $v) {
-                        if ($v['rule_id'] > 0) {
-                            $rule_arr[] = $v['rule_id'];
+                //获取该角色的基本信息
+                $role = Role::find()->where($condition)->select(['role_id'])->one();
+                if ($role) {
+                    $role_rule = $role->getRoleRules()->select(['rule_id'])->all();
+                    $rule_arr = [];
+                    if ($role_rule) {
+                        foreach ($role_rule as $k => $v) {
+                            if ($v['rule_id'] > 0) {
+                                $rule_arr[] = $v['rule_id'];
+                            }
                         }
                     }
-                }
-                $rule_arr = @array_flip(array_flip($rule_arr));//获取到所有该角色的所有节点ID
-                $rules = Rule::find()->where(['status' => $status, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
-                if ($rules) {
-                    foreach ($rules as $rk => $rv) {
-                        $access[] = $rv[$field];
+                    $rule_arr = @array_flip(array_flip($rule_arr));//获取到所有该角色的所有节点ID
+                    $rules = Rule::find()->where(['status' => $status, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
+                    if ($rules) {
+                        foreach ($rules as $rk => $rv) {
+                            $access[] = $rv[$field];
+                        }
                     }
                 }
             }
@@ -291,7 +293,7 @@ class Role extends \yii\db\ActiveRecord
      * 获取角色列表（下拉列表框）
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getRoleList($condition=['status' => 0],$fields=['role_id', 'name'])
+    public static function getRoleList($condition = ['status' => 0], $fields = ['role_id', 'name'])
     {
         return static::find()
             ->select($fields)

@@ -102,10 +102,14 @@ class User extends \yii\db\ActiveRecord
      */
     public static function is_valid($user_id)
     {
-        $user = self::getUserById($user_id, ['status']);
-        if ($user['status'] == self::getActiveVal()) {
-            return true;
-        } else {
+        try {
+            $user = self::getUserById($user_id, ['status']);
+            if ($user['status'] == self::getActiveVal()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\Exception $exception) {
             return false;
         }
     }
@@ -149,33 +153,35 @@ class User extends \yii\db\ActiveRecord
         $access_temp = [];
         try {
             if ($user_id > 0) {
-                $roles = self::getRolesByUserId($user_id, $system_id);//通过用户id获取该用户在该系统ID所拥有的所有的角色
-                if ($roles) {
-                    foreach ($roles as $k => $v) {
-                        if ($v > 0) {
-                            //判断角色状态
-                            $rules_arr = Role::getAccessByRoleId($v, "name", $status, $system_id);//获取所有角色的名称
-                            if ($rules_arr) {
-                                $access[] = $rules_arr;
+                if (System::is_valid($system_id)) {
+                    $roles = self::getRolesByUserId($user_id, $system_id);//通过用户id获取该用户在该系统ID所拥有的所有的角色
+                    if ($roles) {
+                        foreach ($roles as $k => $v) {
+                            if ($v > 0) {
+                                //判断角色状态
+                                $rules_arr = Role::getAccessByRoleId($v, "name", $status, $system_id);//获取所有角色的名称
+                                if ($rules_arr) {
+                                    $access[] = $rules_arr;
+                                }
+
                             }
 
                         }
-
                     }
-                }
-            }
-            if ($access) {
-                foreach ($access as $ak => $av) {
-                    if (is_array($av) && !empty($av)) {
-                        foreach ($av as $s_v) {
-                            if ($s_v) {
-                                $access_temp[] = $s_v;
+
+                    if ($access) {
+                        foreach ($access as $ak => $av) {
+                            if (is_array($av) && !empty($av)) {
+                                foreach ($av as $s_v) {
+                                    if ($s_v) {
+                                        $access_temp[] = $s_v;
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-
         } catch (\Exception $exception) {
             return $access_temp;
         }
@@ -196,18 +202,20 @@ class User extends \yii\db\ActiveRecord
         $user_primary_id = self::getUserPrimaryKey();
         try {
             if ($user_id > 0) {
-                $user = User::getUserById($user_id, [$user_primary_id]);
-                if ($user) {
-                    $role_prikey_id = Role::getRolePrimaryKey();
-                    $roles = $user->getUserRoles()->select([$role_prikey_id])->asArray()->all();
-                    if ($roles) {
-                        foreach ($roles as $k => $v) {
-                            if ($v['role_id'] > 0) {
-                                //判断改角色是否在改系统ID下
-                                if (Role::findOne(["role_id" => $v['role_id'], "system_id" => $system_id])) {
-                                    $role_arr[] = $v['role_id'];
-                                }
+                if (System::is_valid($system_id)) {
+                    $user = User::getUserById($user_id, [$user_primary_id]);
+                    if ($user) {
+                        $role_prikey_id = Role::getRolePrimaryKey();
+                        $roles = $user->getUserRoles()->select([$role_prikey_id])->asArray()->all();
+                        if ($roles) {
+                            foreach ($roles as $k => $v) {
+                                if ($v['role_id'] > 0) {
+                                    //判断改角色是否在改系统ID下
+                                    if (Role::findOne(["role_id" => $v['role_id'], "system_id" => $system_id])) {
+                                        $role_arr[] = $v['role_id'];
+                                    }
 
+                                }
                             }
                         }
                     }

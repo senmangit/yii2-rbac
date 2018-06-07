@@ -128,6 +128,7 @@ class RoleRule extends \yii\db\ActiveRecord
      * 403：该用户已被删除
      * 404：授权异常
      * 405：权限不足
+     * 406：该系统已经被禁用
      */
 
 
@@ -143,6 +144,13 @@ class RoleRule extends \yii\db\ActiveRecord
             if (self::is_super_admin($user_id)) {
                 return 400;
             }
+
+            //判断是否系统禁用了
+            if (!System::is_valid($system_id)) {
+                return 406;
+            }
+
+
             if ($pathInfo == null) {
                 $pathInfo = Yii::$app->request->pathInfo;
             }
@@ -155,6 +163,8 @@ class RoleRule extends \yii\db\ActiveRecord
                 $rule_reg = @strtolower(implode('/', $path_arr));
 
                 $parms = \Yii::$app->params;
+
+                //判断是否在免检之列
                 try {
                     $except_route_config_arr = $parms['rbac_manager']['except_route'];
                     if (in_array($rule_reg, $except_route_config_arr)) {

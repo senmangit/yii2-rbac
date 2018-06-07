@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/Rbac/models/Role.php" afterPath="$PROJECT_DIR$/src/Rbac/models/Role.php" />
+      <change beforePath="$PROJECT_DIR$/src/Rbac/models/RoleRule.php" afterPath="$PROJECT_DIR$/src/Rbac/models/RoleRule.php" />
       <change beforePath="$PROJECT_DIR$/src/Rbac/models/Rule.php" afterPath="$PROJECT_DIR$/src/Rbac/models/Rule.php" />
+      <change beforePath="$PROJECT_DIR$/src/Rbac/models/System.php" afterPath="$PROJECT_DIR$/src/Rbac/models/System.php" />
+      <change beforePath="$PROJECT_DIR$/src/Rbac/models/User.php" afterPath="$PROJECT_DIR$/src/Rbac/models/User.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +24,38 @@
       <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+            <state relative-caret-position="493">
+              <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Role.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rbac/models/Role.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="604">
+              <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleRule.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="604">
+              <caret line="147" column="13" lean-forward="false" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -31,7 +65,27 @@
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="343">
-              <caret line="60" column="41" lean-forward="true" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+              <caret line="60" column="41" lean-forward="false" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rbac/models/System.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rule.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="604">
+              <caret line="288" column="26" lean-forward="false" selection-start-line="288" selection-start-column="26" selection-end-line="288" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -40,8 +94,8 @@
       <file leaf-file-name="error-code.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/common/error-code.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="935">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -50,7 +104,7 @@
       <file leaf-file-name="error-lang.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/common/error-lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="238">
               <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
               <folding />
             </state>
@@ -60,7 +114,7 @@
       <file leaf-file-name="helper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/common/helper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1239">
+            <state relative-caret-position="136">
               <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
               <folding>
                 <element signature="e#2047#2216#0#PHP" expanded="false" />
@@ -80,53 +134,6 @@
                 <element signature="e#7401#8602#0#PHP" expanded="false" />
                 <element signature="e#8612#9188#0#PHP" expanded="false" />
                 <element signature="e#9198#9766#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Role.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Rbac/models/Role.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2788">
-              <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-              <folding>
-                <element signature="e#31#39#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoleRule.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="147" column="13" lean-forward="true" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rule.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="288" column="26" lean-forward="false" selection-start-line="288" selection-start-column="26" selection-end-line="288" selection-end-column="26" />
-              <folding>
-                <element signature="e#31#39#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,10 +182,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="45" />
-    <option name="y" value="492" />
+    <option name="x" value="54" />
+    <option name="y" value="591" />
     <option name="width" value="1743" />
-    <option name="height" value="862" />
+    <option name="height" value="497" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -195,6 +202,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -224,7 +232,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -234,13 +241,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\WWW\yii2-rbac-manager\src\Rbac\common" />
-      <recent name="D:\WWW\yii2-rbac-manager\src\Rbac" />
-      <recent name="D:\WWW\yii2-rbac-manager\src\Rbac\models" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\WWW\yii2-rbac-manager\src\Rbac\controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WWW\yii2-rbac-manager\src\Rbac\models" />
+      <recent name="D:\WWW\yii2-rbac-manager\src\Rbac\common" />
+      <recent name="D:\WWW\yii2-rbac-manager\src\Rbac" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -274,7 +281,8 @@
       <workItem from="1527812904777" duration="3403000" />
       <workItem from="1528071090596" duration="5630000" />
       <workItem from="1528162726295" duration="2360000" />
-      <workItem from="1528252946981" duration="4342000" />
+      <workItem from="1528252946981" duration="5552000" />
+      <workItem from="1528341839540" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="修改模型">
       <created>1527580563728</created>
@@ -423,17 +431,24 @@
       <option name="project" value="LOCAL" />
       <updated>1528262688189</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="修正bug">
+      <created>1528262842302</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1528262842302</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23608000" />
+    <option name="totallyTimeSpent" value="24855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23987207" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24253732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -498,7 +513,8 @@
     <MESSAGE value="修正pid为0的情况" />
     <MESSAGE value="修正" />
     <MESSAGE value="修正bug，添加常用函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正bug，添加常用函数" />
+    <MESSAGE value="修正bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -529,7 +545,7 @@
         <state relative-caret-position="969">
           <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -547,7 +563,7 @@
         <state relative-caret-position="2669">
           <caret line="158" column="32" lean-forward="false" selection-start-line="158" selection-start-column="25" selection-end-line="158" selection-end-column="32" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -576,7 +592,7 @@
         <state relative-caret-position="969">
           <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -602,7 +618,7 @@
         <state relative-caret-position="595">
           <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -650,7 +666,7 @@
         <state relative-caret-position="5474">
           <caret line="322" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -668,7 +684,7 @@
         <state relative-caret-position="646">
           <caret line="38" column="48" lean-forward="false" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,7 +703,7 @@
         <state relative-caret-position="34">
           <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -697,7 +713,7 @@
         <state relative-caret-position="34">
           <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -725,7 +741,7 @@
         <state relative-caret-position="34">
           <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -735,7 +751,7 @@
         <state relative-caret-position="34">
           <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
+            <element signature="e#31#39#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,20 +783,6 @@
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/AccessController.php" />
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Access.php" />
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Users.php" />
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/System.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/controllers/RoleController.php" />
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/web/css/site.css" />
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/behaviors/TokenValidateBehavior.php" />
@@ -798,15 +800,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/error-code.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state relative-caret-position="935">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/error-lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="238">
           <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding />
         </state>
@@ -814,7 +816,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/helper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1239">
+        <state relative-caret-position="136">
           <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding>
             <element signature="e#2047#2216#0#PHP" expanded="false" />
@@ -838,47 +840,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
-          <caret line="60" column="41" lean-forward="true" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+          <caret line="60" column="41" lean-forward="false" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/System.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="147" column="13" lean-forward="true" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="604">
           <caret line="288" column="26" lean-forward="false" selection-start-line="288" selection-start-column="26" selection-end-line="288" selection-end-column="26" />
-          <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Role.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2788">
+        <state relative-caret-position="604">
           <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-          <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="147" column="13" lean-forward="false" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
