@@ -128,8 +128,8 @@ class System extends \yii\db\ActiveRecord
     public static function is_valid($system_id)
     {
         try {
-            $system = self::getUserById($system_id, ['status']);
-            if ($system['status'] == self::status_active) {
+            $system = self::getSystemById($system_id, ['status']);
+            if ($system['status'] == self::$status_active) {
                 return true;
             } else {
                 return false;
@@ -146,7 +146,7 @@ class System extends \yii\db\ActiveRecord
      * @param $fields
      * @return array|null|ActiveRecord
      */
-    public static function getUserById($system_id, $fields = ['*'])
+    public static function getSystemById($system_id, $fields = ['*'])
     {
         $id = self::getPrimaryKey();
         $condition = [
