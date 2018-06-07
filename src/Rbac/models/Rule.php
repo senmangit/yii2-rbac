@@ -342,11 +342,12 @@ class Rule extends \yii\db\ActiveRecord
      */
     public static function add($data)
     {
+
         try {
             if (!($data['system_id'] > 0)) {
                 return false;
             }
-            $rule = Rule::findOne(["name" => $data['name'], "href" => $data['href'],"system_id"=>$data['system_id']]);
+            $rule = Rule::findOne(["name" => $data['name'], "href" => $data['href'], "system_id" => $data['system_id']]);
             if ($rule) {
                 return false;
             }
@@ -360,7 +361,7 @@ class Rule extends \yii\db\ActiveRecord
                 return false;
             }
             if ($data['pid'] > 0) {
-                $rule_pid = Rule::findOne(["rule_id" => $pid]);
+                $rule_pid = Rule::findOne(["rule_id" => $data['pid']]);
                 if (!$rule_pid) {
                     return false;
                 }
