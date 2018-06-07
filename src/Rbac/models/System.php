@@ -142,7 +142,7 @@ class System extends \yii\db\ActiveRecord
 
     /**
      * 根据id获取系统信息
-     * @param $userId
+     * @param $system_id
      * @param $fields
      * @return array|null|ActiveRecord
      */
@@ -150,7 +150,7 @@ class System extends \yii\db\ActiveRecord
     {
         $id = self::getPrimaryKey();
         $condition = [
-            $id[0] => $userId,
+            $id[0] => $system_id,
         ];
         return static::find()->where($condition)->select($fields)->one();
     }
