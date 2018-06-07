@@ -233,7 +233,7 @@ class Role extends \yii\db\ActiveRecord
     {
         try {
             $role_model = new Role();
-            $role = $role_model->getRole(["name" => $data['name']]);
+            $role = $role_model->getRole(["name" => $data['name'],"system_id"=>$data['system_id']]);
             if ($role) {
                 return false;
             }

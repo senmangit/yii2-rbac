@@ -346,7 +346,7 @@ class Rule extends \yii\db\ActiveRecord
             if (!($data['system_id'] > 0)) {
                 return false;
             }
-            $rule = Rule::findOne(["name" => $data['name'], "href" => $data['href']]);
+            $rule = Rule::findOne(["name" => $data['name'], "href" => $data['href'],"system_id"=>$data['system_id']]);
             if ($rule) {
                 return false;
             }
