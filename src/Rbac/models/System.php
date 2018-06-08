@@ -148,9 +148,12 @@ class System extends \yii\db\ActiveRecord
      */
     public static function getSystemById($system_id, $fields = ['*'])
     {
+        //组织条件
         $condition = [
             "system_id"=> $system_id,
         ];
+
+        //返回结果
         return static::find()->where($condition)->select($fields)->one();
     }
 }
