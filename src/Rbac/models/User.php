@@ -261,7 +261,6 @@ class User extends \yii\db\ActiveRecord
 
         if ($list) {
             foreach ($list as $k => $v) {
-                $roles = [];
                 //获取每个用户对应的角色信息
                 if ($v) {
                     $roles_id = UserRole::find()->where(["user_id" => $v])->all();
