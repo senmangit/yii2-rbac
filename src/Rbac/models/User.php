@@ -228,13 +228,10 @@ class User extends \yii\db\ActiveRecord
     }
 
     //获取用户分页列表
-    public static function listOfPagin($page, $limit = 20, $condition = [])
+    public static function listOfPagin($page, $limit = 20, $sort = 1, $keywords = NULL)
     {
         //构造查询
         $query = User::find();
-        if ($condition) {
-            $query = $query->where($condition);
-        }
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
 
@@ -244,6 +241,16 @@ class User extends \yii\db\ActiveRecord
 
         if (!($limit >= 0)) {
             $limit = 20;
+        }
+
+        if ($sort == 1) {
+            $query->orderBy([self::getUserPrimaryKey() => SORT_DESC]);
+        } else {
+            $query->orderBy([self::getUserPrimaryKey() => SORT_ASC]);
+        }
+
+        if (!empty($keywords)) {
+            $query->andWhere("concat(username,'_',real_name) like '%$keywords%'");
         }
 
         //获取数据
@@ -258,7 +265,6 @@ class User extends \yii\db\ActiveRecord
                 //获取每个用户对应的角色信息
                 if ($v) {
                     $roles_id = UserRole::find()->where(["user_id" => $v])->all();
-
                     $role_temp = [];
                     foreach ($roles_id as $rk => $rv) {
                         $role_temp[] = Role::findOne(["role_id" => $rv['role_id']]);
