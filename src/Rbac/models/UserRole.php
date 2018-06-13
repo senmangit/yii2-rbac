@@ -99,7 +99,6 @@ class UserRole extends \yii\db\ActiveRecord
 
     }
 
-
     /**
      * @param $user_id
      * @return bool
