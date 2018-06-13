@@ -86,7 +86,9 @@ class UserRole extends \yii\db\ActiveRecord
     public static function setRoleByUserId($user_id, $role_id)
     {
         $user_model = new User();
-        $roles = $user_model->getRolesByUserId($user_id);
+        //获取该角色的系统ID
+        $role_info = Role::find()->select(['system_id'])->where(["role_id" => $role_id])->one();
+        $roles = $user_model::getRolesByUserId($user_id, $role_info['system_id']);
         if (!in_array($role_id, $roles)) {
             //新增
             $user_role_model = new UserRole();
@@ -95,6 +97,29 @@ class UserRole extends \yii\db\ActiveRecord
             return $user_role_model->save();
         }
 
+    }
+
+    /**
+     * @param $user_id
+     * @param $role_id
+     * @return bool
+     * 为没有配置角色的用户配置一个基本角色
+     */
+    public static function setBasicRole($user_id, $role_id)
+    {
+        $user = User::getUserById($user_id);
+        $user_roles = $user->getUserRoles()->all();
+
+        if (isset(Yii::$app->params['rbac_manager']['base_role_id']) && Yii::$app->params['rbac_manager']['base_role_id'] > 0) {
+            $base_role_id = Yii::$app->params['rbac_manager']['base_role_id'];
+            if (empty($user_roles)) {
+                return self::setRoleByUserId($user_id, $role_id);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 
