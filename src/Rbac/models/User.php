@@ -232,8 +232,7 @@ class User extends \yii\db\ActiveRecord
     {
         //构造查询
         $query = User::find();
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+
 
         //处理参数
         // $limit = input('limit', $pages->limit);
@@ -252,6 +251,9 @@ class User extends \yii\db\ActiveRecord
         if (!empty($keywords)) {
             $query->andWhere("concat(username,'_',real_name) like '%$keywords%'");
         }
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
 
         //获取数据
         $list = $query->offset(($page - 1) * $limit)
