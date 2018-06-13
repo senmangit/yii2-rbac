@@ -210,8 +210,8 @@ class User extends \yii\db\ActiveRecord
                         if ($roles) {
                             foreach ($roles as $k => $v) {
                                 if ($v['role_id'] > 0) {
-                                    //判断改角色是否在改系统ID下
-                                    if (Role::findOne(["role_id" => $v['role_id'], "system_id" => $system_id])) {
+                                    //判断该角色是否在该系统ID下
+                                    if (Role::getRoleByCondition(["role_id" => $v['role_id'], "system_id" => $system_id], ["role_id"])) {
                                         $role_arr[] = $v['role_id'];
                                     }
 

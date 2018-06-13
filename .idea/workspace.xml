@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="统计用户数量">
+    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/src/Rbac/models/User.php" afterPath="$PROJECT_DIR$/src/Rbac/models/User.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +31,8 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="245" column="69" lean-forward="false" selection-start-line="245" selection-start-column="69" selection-end-line="245" selection-end-column="69" />
+            <state relative-caret-position="132">
+              <caret line="213" column="137" lean-forward="false" selection-start-line="213" selection-start-column="137" selection-end-line="213" selection-end-column="137" />
               <folding>
                 <element signature="e#31#39#0#PHP" expanded="true" />
               </folding>
@@ -177,8 +176,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="157" />
-    <option name="y" value="19" />
+    <option name="x" value="775" />
+    <option name="y" value="150" />
     <option name="width" value="1743" />
     <option name="height" value="870" />
   </component>
@@ -283,7 +282,7 @@
       <workItem from="1528422382506" duration="2437000" />
       <workItem from="1528679943302" duration="2406000" />
       <workItem from="1528796538696" duration="2078000" />
-      <workItem from="1528858300909" duration="7343000" />
+      <workItem from="1528858300909" duration="7968000" />
     </task>
     <task id="LOCAL-00001" summary="修改模型">
       <created>1527580563728</created>
@@ -607,11 +606,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528861536538</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="统计用户数量">
+      <created>1528878286524</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1528878286524</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49500000" />
+    <option name="totallyTimeSpent" value="50125000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -670,7 +676,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改role模型" />
     <MESSAGE value="添加参数" />
     <MESSAGE value="优化模型" />
     <MESSAGE value="删除注释" />
@@ -695,7 +700,8 @@
     <MESSAGE value="优化权限" />
     <MESSAGE value="增加给用户配置基本角色" />
     <MESSAGE value="增加给用户配置基本角色+捕捉异常" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加给用户配置基本角色+捕捉异常" />
+    <MESSAGE value="统计用户数量" />
+    <option name="LAST_COMMIT_MESSAGE" value="统计用户数量" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1019,8 +1025,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="245" column="69" lean-forward="false" selection-start-line="245" selection-start-column="69" selection-end-line="245" selection-end-column="69" />
+        <state relative-caret-position="132">
+          <caret line="213" column="137" lean-forward="false" selection-start-line="213" selection-start-column="137" selection-end-line="213" selection-end-column="137" />
           <folding>
             <element signature="e#31#39#0#PHP" expanded="true" />
           </folding>
