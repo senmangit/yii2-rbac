@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
+    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="增加给用户配置基本角色+捕捉异常">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" afterPath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
     </list>
@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="429">
-              <caret line="264" column="25" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
+              <caret line="264" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -40,8 +40,8 @@
       <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="112" column="29" lean-forward="false" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="29" />
+            <state relative-caret-position="480">
+              <caret line="114" column="41" lean-forward="false" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -271,7 +271,7 @@
       <workItem from="1528422382506" duration="2437000" />
       <workItem from="1528679943302" duration="2406000" />
       <workItem from="1528796538696" duration="2078000" />
-      <workItem from="1528858300909" duration="238000" />
+      <workItem from="1528858300909" duration="867000" />
     </task>
     <task id="LOCAL-00001" summary="修改模型">
       <created>1527580563728</created>
@@ -574,11 +574,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528858439478</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="增加给用户配置基本角色+捕捉异常">
+      <created>1528858543014</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1528858543014</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42395000" />
+    <option name="totallyTimeSpent" value="43024000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -969,15 +976,15 @@
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
-          <caret line="264" column="25" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
+          <caret line="264" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="112" column="29" lean-forward="false" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="29" />
+        <state relative-caret-position="480">
+          <caret line="114" column="41" lean-forward="false" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
           <folding />
         </state>
       </provider>
