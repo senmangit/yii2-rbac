@@ -241,7 +241,7 @@ class UserRole extends \yii\db\ActiveRecord
 
         } catch (\Throwable $e) {
             $transaction->rollBack();
-            return false;;
+            return false;
         }
     }
 }
