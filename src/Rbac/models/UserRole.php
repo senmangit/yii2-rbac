@@ -101,11 +101,10 @@ class UserRole extends \yii\db\ActiveRecord
 
     /**
      * @param $user_id
-     * @param $role_id
      * @return bool
      * 为没有配置角色的用户配置一个基本角色
      */
-    public static function setBasicRole($user_id, $role_id)
+    public static function setBasicRole($user_id)
     {
         try {
             $user = User::getUserById($user_id);
@@ -113,7 +112,7 @@ class UserRole extends \yii\db\ActiveRecord
             if (isset(Yii::$app->params['rbac_manager']['base_role_id']) && Yii::$app->params['rbac_manager']['base_role_id'] > 0) {
                 $base_role_id = Yii::$app->params['rbac_manager']['base_role_id'];
                 if (empty($user_roles)) {
-                    return self::setRoleByUserId($user_id, $role_id);
+                    return self::setRoleByUserId($user_id, $base_role_id);
                 } else {
                     return false;
                 }

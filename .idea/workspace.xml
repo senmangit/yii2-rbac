@@ -40,8 +40,8 @@
       <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1194">
-              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="259">
+              <caret line="112" column="29" lean-forward="false" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -271,7 +271,7 @@
       <workItem from="1528422382506" duration="2437000" />
       <workItem from="1528679943302" duration="2406000" />
       <workItem from="1528796538696" duration="2078000" />
-      <workItem from="1528858300909" duration="117000" />
+      <workItem from="1528858300909" duration="238000" />
     </task>
     <task id="LOCAL-00001" summary="修改模型">
       <created>1527580563728</created>
@@ -567,11 +567,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528858342710</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="增加给用户配置基本角色+捕捉异常">
+      <created>1528858439478</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1528858439478</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42274000" />
+    <option name="totallyTimeSpent" value="42395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -630,7 +637,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改rule模型" />
     <MESSAGE value="修改role模型" />
     <MESSAGE value="添加参数" />
     <MESSAGE value="优化模型" />
@@ -655,7 +661,8 @@
     <MESSAGE value="添加用户检索" />
     <MESSAGE value="优化权限" />
     <MESSAGE value="增加给用户配置基本角色" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加给用户配置基本角色" />
+    <MESSAGE value="增加给用户配置基本角色+捕捉异常" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加给用户配置基本角色+捕捉异常" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,8 +976,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1194">
-          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="259">
+          <caret line="112" column="29" lean-forward="false" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="29" />
           <folding />
         </state>
       </provider>
