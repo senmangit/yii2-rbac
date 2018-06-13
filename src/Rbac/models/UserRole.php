@@ -107,17 +107,20 @@ class UserRole extends \yii\db\ActiveRecord
      */
     public static function setBasicRole($user_id, $role_id)
     {
-        $user = User::getUserById($user_id);
-        $user_roles = $user->getUserRoles()->all();
-
-        if (isset(Yii::$app->params['rbac_manager']['base_role_id']) && Yii::$app->params['rbac_manager']['base_role_id'] > 0) {
-            $base_role_id = Yii::$app->params['rbac_manager']['base_role_id'];
-            if (empty($user_roles)) {
-                return self::setRoleByUserId($user_id, $role_id);
+        try {
+            $user = User::getUserById($user_id);
+            $user_roles = $user->getUserRoles()->all();
+            if (isset(Yii::$app->params['rbac_manager']['base_role_id']) && Yii::$app->params['rbac_manager']['base_role_id'] > 0) {
+                $base_role_id = Yii::$app->params['rbac_manager']['base_role_id'];
+                if (empty($user_roles)) {
+                    return self::setRoleByUserId($user_id, $role_id);
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
-        } else {
+        } catch (\Exception $exception) {
             return false;
         }
     }
