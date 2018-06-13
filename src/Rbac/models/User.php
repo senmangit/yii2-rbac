@@ -279,5 +279,111 @@ class User extends \yii\db\ActiveRecord
         //返回数据
         return ['list' => $list, 'pages' => $pages];
     }
+
+
+    /**
+     * @param $user_id
+     * @param $role_id_arr
+     * @param $system_id
+     * @return bool
+     * 为用户分配角色
+     */
+
+    public function actionSetUserRole($user_id, $role_id_arr, $system_id)
+    {
+        $transaction = UserRole::getDb()->beginTransaction();
+        try {
+
+            if (!($user_id > 0)) {
+                return false;
+            }
+            if (!($system_id > 0)) {
+                return false;
+            }
+            if (!is_array($role_id_arr)) {
+                return false;
+            }
+            $role_model = new Role();
+            if ($role_id_arr) {
+                $role_id_arr = @array_flip(array_flip($role_id_arr));
+                foreach ($role_id_arr as $k => $v) {
+                    if ($v > 0) {
+                        //校验是否存在该角色
+                        if (!$role_model::getRoleById($v)) {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            $user_model = new User();
+            $user = $user_model::getUserById($user_id);
+
+            if ($user) {
+                $role_list = $user_model::getRolesByUserId($user_id, $system_id);
+                $result_add = array_diff($role_id_arr, $role_list);//需要增加的
+                $result_del = array_diff($role_list, $role_id_arr);//需要减少的
+
+                $del_condition = [];
+                $del_condition['user_id'] = $user_id;
+                $del_condition['role_id'] = $role_list;
+                //删除差异
+                UserRole::deleteAll([
+                    'and',
+                    'user_id = :user_id',
+                    ['in', 'role_id', $role_list]
+                ],
+                    [
+                        ':user_id' => $user_id
+                    ]);
+
+                //新增
+                if ($role_id_arr) {
+                    foreach ($role_id_arr as $k => $v) {
+                        UserRole::setRoleByUserId($user_id, $v);
+                    }
+                }
+                $all_access_add = [];
+                foreach ($result_add as $rk => $rv) {
+                    $role_info = Role::find()->where(["role_id" => $rv])->one();
+                    $all_access_add[] = $role_info['name'];
+                }
+                $all_access_del = [];
+                foreach ($result_del as $rk => $rv) {
+                    $role_info = Role::find()->where(["role_id" => $rv])->one();
+                    $all_access_del[] = $role_info['name'];
+                }
+
+//                    //记录新增日志
+//                    if ($all_access_add) {
+//                        $all_access_str = @implode("、", $all_access_add);
+//                        $this->addActionLogs(\Yii::$app->params['actionLogOp']['add'], "用户：{$user['user_name']} <br> 角色：{$all_access_str}");
+//                    }
+//
+//                    //记录删除日志
+//                    if ($all_access_del) {
+//                        $all_access_str = @implode("、", $all_access_del);
+//                        $this->addActionLogs(\Yii::$app->params['actionLogOp']['del'], "用户：{$user['user_name']} <br> 角色：{$all_access_str}");
+//                    }
+
+                $transaction->commit();
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            return false;
+
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            return false;;
+        }
+    }
+
+
 }
 
