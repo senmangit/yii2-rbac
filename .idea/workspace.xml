@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="格式化代码">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Rbac.sql" />
+    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/Role.php" afterPath="$PROJECT_DIR$/src/Rbac/models/Role.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,8 +44,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="398">
-                <caret line="35" column="77" lean-forward="false" selection-start-line="35" selection-start-column="77" selection-end-line="35" selection-end-column="77" />
+              <first_editor relative-caret-position="381">
+                <caret line="39" column="4" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -78,7 +76,7 @@
       <file leaf-file-name="Role.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/Role.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="187">
               <caret line="164" column="18" lean-forward="false" selection-start-line="164" selection-start-column="18" selection-end-line="164" selection-end-column="18" />
               <folding>
                 <element signature="e#31#39#0#PHP" expanded="true" />
@@ -100,7 +98,7 @@
       <file leaf-file-name="Rule.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4053">
+            <state relative-caret-position="3339">
               <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
               <folding />
             </state>
@@ -205,6 +203,24 @@
               <item name="yii2-rbac-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="yii2-rbac-manager" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="yii2-rbac-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2-rbac-manager" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="yii2-rbac-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2-rbac-manager" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Rbac" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="yii2-rbac-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2-rbac-manager" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Rbac" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -267,13 +283,6 @@
       <workItem from="1528796538696" duration="2078000" />
       <workItem from="1528858300909" duration="10119000" />
       <workItem from="1528939792615" duration="1166000" />
-    </task>
-    <task id="LOCAL-00007" summary="修改role模型">
-      <created>1527761302230</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1527761302231</updated>
     </task>
     <task id="LOCAL-00008" summary="修改role模型">
       <created>1527826773276</created>
@@ -611,11 +620,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528947470948</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="readme">
+      <created>1528952779387</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1528952779388</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59418000" />
+    <option name="totallyTimeSpent" value="59567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -685,7 +701,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修正" />
     <MESSAGE value="修正bug，添加常用函数" />
     <MESSAGE value="修正bug" />
     <MESSAGE value="增加系统状态校验" />
@@ -710,7 +725,8 @@
     <MESSAGE value="分配角色" />
     <MESSAGE value="角色列表" />
     <MESSAGE value="删除角色的部分属性" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除角色的部分属性" />
+    <MESSAGE value="readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1001,24 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4053">
-          <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/Role.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="164" column="18" lean-forward="false" selection-start-line="164" selection-start-column="18" selection-end-line="164" selection-end-column="18" />
-          <folding>
-            <element signature="e#31#39#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-340">
@@ -1035,11 +1033,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/Role.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="164" column="18" lean-forward="false" selection-start-line="164" selection-start-column="18" selection-end-line="164" selection-end-column="18" />
+          <folding>
+            <element signature="e#31#39#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3339">
+          <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="398">
-            <caret line="35" column="77" lean-forward="false" selection-start-line="35" selection-start-column="77" selection-end-line="35" selection-end-column="77" />
+          <first_editor relative-caret-position="381">
+            <caret line="39" column="4" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
             <folding />
           </first_editor>
           <second_editor />

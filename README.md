@@ -33,4 +33,11 @@ composer require senman/yii2-rbac-manager dev-master
 
 四、判断是否具有权限
 
-    UserRole::hasAuth($user_id, $pathInfo = null, $module_id="", $system_id=1);
+   
+
+    \Rbac\models\UserRole::hasAuth($user_id, $pathInfo = null, $module_id="", $system_id=1);
+    
+    
+五、如有任何疑问欢迎加入QQ群：338461207 进行交流
+if you have any questions, welcome to join QQ group: 338461207
+    
