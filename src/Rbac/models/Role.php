@@ -163,7 +163,6 @@ class Role extends \yii\db\ActiveRecord
                     "status" => $status,
                     "system_id" => $system_id,
                 ];
-
                 //获取该角色的基本信息
                 $role = Role::find()->where($condition)->select(['role_id'])->one();
                 if ($role) {
@@ -224,7 +223,7 @@ class Role extends \yii\db\ActiveRecord
     {
         try {
             $role_model = new Role();
-            $role = $role_model->getRole(["name" => $data['name'],"system_id"=>$data['system_id']]);
+            $role = $role_model->getRole(["name" => $data['name'], "system_id" => $data['system_id']]);
             if ($role) {
                 return false;
             }
@@ -277,7 +276,7 @@ class Role extends \yii\db\ActiveRecord
             ->all();
 
         //返回数据
-        return  ['list' => $list, 'pages' => $pages];
+        return ['list' => $list, 'pages' => $pages];
     }
 
     /**
