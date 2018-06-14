@@ -85,7 +85,7 @@
       <file leaf-file-name="Rule.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5124">
+            <state relative-caret-position="4053">
               <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
               <folding />
             </state>
@@ -627,7 +627,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54729000" />
+    <option name="totallyTimeSpent" value="55425000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1039,7 +1039,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5124">
+        <state relative-caret-position="4053">
           <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
           <folding />
         </state>
