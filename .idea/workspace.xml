@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" afterPath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +30,7 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1309">
+            <state relative-caret-position="1564">
               <caret line="281" column="0" lean-forward="false" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
               <folding>
                 <element signature="e#31#39#0#PHP" expanded="true" />
@@ -53,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
@@ -76,8 +75,18 @@
       <file leaf-file-name="RoleRule.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2278">
+            <state relative-caret-position="17">
               <caret line="134" column="32" lean-forward="false" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rule.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5124">
+              <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -270,13 +279,6 @@
       <workItem from="1528796538696" duration="2078000" />
       <workItem from="1528858300909" duration="10119000" />
       <workItem from="1528939792615" duration="1166000" />
-    </task>
-    <task id="LOCAL-00004" summary="修改rule模型">
-      <created>1527758238604</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1527758238604</updated>
     </task>
     <task id="LOCAL-00005" summary="修改rule模型">
       <created>1527758538808</created>
@@ -614,11 +616,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528943973960</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="分配角色">
+      <created>1528944359184</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1528944359184</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53845000" />
+    <option name="totallyTimeSpent" value="54534000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -688,7 +697,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="加入不需要权限校验的模块的评比设置" />
     <MESSAGE value="去掉开发标识" />
     <MESSAGE value="修正pid为0的情况" />
     <MESSAGE value="修正" />
@@ -713,7 +721,8 @@
     <MESSAGE value="为用户分配角色" />
     <MESSAGE value="优化注释" />
     <MESSAGE value="获取详情" />
-    <option name="LAST_COMMIT_MESSAGE" value="获取详情" />
+    <MESSAGE value="分配角色" />
+    <option name="LAST_COMMIT_MESSAGE" value="分配角色" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -942,14 +951,6 @@
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/error-code.php" />
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/error-lang.php" />
     <entry file="file://$PROJECT_DIR$/src/Rbac/common/helper.php" />
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6341">
-          <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1003,17 +1004,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2278">
-          <caret line="134" column="32" lean-forward="false" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
+        <state relative-caret-position="408">
+          <caret line="251" column="5" lean-forward="false" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
+        <state relative-caret-position="1564">
           <caret line="281" column="0" lean-forward="false" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
           <folding>
             <element signature="e#31#39#0#PHP" expanded="true" />
@@ -1029,10 +1030,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/RoleRule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="251" column="5" lean-forward="false" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
+        <state relative-caret-position="17">
+          <caret line="134" column="32" lean-forward="false" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5124">
+          <caret line="374" column="29" lean-forward="false" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
           <folding />
         </state>
       </provider>
