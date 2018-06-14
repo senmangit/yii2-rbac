@@ -209,7 +209,7 @@ class Role extends \yii\db\ActiveRecord
      */
     public static function getRoleById($id, $fields = "*")
     {
-        return Role::find()->select($fields)->where(["role_id" => $id])->find();
+        return Role::find()->select($fields)->where(["role_id" => $id])->one();
     }
 
     /**
