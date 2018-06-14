@@ -153,6 +153,7 @@ class UserRole extends \yii\db\ActiveRecord
     public static function setUserRole($user_id, $role_id_arr, $system_id)
     {
         $transaction = UserRole::getDb()->beginTransaction();
+
         try {
 
             if (!($user_id > 0)) {
@@ -164,6 +165,7 @@ class UserRole extends \yii\db\ActiveRecord
             if (!is_array($role_id_arr)) {
                 return false;
             }
+
             $role_model = new Role();
             if ($role_id_arr) {
                 $role_id_arr = @array_flip(array_flip($role_id_arr));
@@ -181,7 +183,6 @@ class UserRole extends \yii\db\ActiveRecord
 
             $user_model = new User();
             $user = $user_model::getUserById($user_id);
-
             if ($user) {
                 $role_list = $user_model::getRolesByUserId($user_id, $system_id);
                 $result_add = array_diff($role_id_arr, $role_list);//需要增加的
@@ -200,10 +201,14 @@ class UserRole extends \yii\db\ActiveRecord
                         ':user_id' => $user_id
                     ]);
 
+
                 //新增
                 if ($role_id_arr) {
                     foreach ($role_id_arr as $k => $v) {
-                        UserRole::setRoleByUserId($user_id, $v);
+                        if(!self::setRoleByUserId($user_id, $v)){
+                            $transaction->rollBack();
+                            return false;
+                        }
                     }
                 }
                 $all_access_add = [];
@@ -232,6 +237,7 @@ class UserRole extends \yii\db\ActiveRecord
                 $transaction->commit();
                 return true;
             } else {
+                $transaction->rollBack();
                 return false;
             }
 
