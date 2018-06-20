@@ -118,14 +118,19 @@ class Role extends \yii\db\ActiveRecord
     {
         $tr = \Yii::$app->db->beginTransaction();
         try {
-            //1、删除role_rule下的记录
-            RoleRule::deleteByCondition(["role_id" => $role_id]);
-            //2、删除user_role下的记录
-            UserRole::deleteByCondition(["role_id" => $role_id]);
-            //3、删除role表记录
-            self::deleteByCondition(["role_id" => $role_id]);
-            $tr->commit();
-            return true;
+            if (self::getRoleById($role_id)) {
+                //1、删除role_rule下的记录
+                RoleRule::deleteByCondition(["role_id" => $role_id]);
+                //2、删除user_role下的记录
+                UserRole::deleteByCondition(["role_id" => $role_id]);
+                //3、删除role表记录
+                self::deleteByCondition(["role_id" => $role_id]);
+                $tr->commit();
+                return true;
+            } else {
+                $tr->rollBack();
+                return false;
+            }
         } catch (\Exception $exception) {
             $tr->rollBack();
             return false;
@@ -245,13 +250,24 @@ class Role extends \yii\db\ActiveRecord
 
     }
 
-    //获取角色信息
+    /**
+     * @param $condition
+     * @param string $field
+     * @return mixed
+     * 根据条件获取角色信息
+     */
     public function getRole($condition, $field = "*")
     {
         return Role::find()->where($condition)->select($field)->one();
     }
 
-    //获取角色分页列表
+    /**
+     * @param $page 页码
+     * @param int $limit 每一页条数
+     * @param array $condition 条件
+     * @return array
+     * 根据条件获取角色列表
+     */
     public static function listOfPagin($page, $limit = 20, $condition = [])
     {
         //构造查询

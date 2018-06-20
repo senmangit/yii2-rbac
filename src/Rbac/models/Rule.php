@@ -90,7 +90,19 @@ class Rule extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param $role_id
+     * @param $rule_id
+     * @param string $fields
+     * @return mixed
+     * 根据ID 获取规则信息
+     */
+    public function getRuleById($rule_id, $fields = "*")
+    {
+        return Rule::find()->select($fields)->where(["rule_id" => $rule_id])->one();
+    }
+
+
+    /**
+     * @param $rule_id
      * @return false|int
      * @throws \Exception
      * @throws \yii\db\StaleObjectException
@@ -101,18 +113,19 @@ class Rule extends \yii\db\ActiveRecord
         $tr = Yii::$app->db->beginTransaction();
         try {
 
-            //1、删除access记录
-            RoleRule::deleteByCondition(["rule_id" => $rule_id]);
-
-            //2、删除use_function记录
-            // (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
-
-            //3、删除节点记录
-            $query = Rule::findOne(["rule_id" => $rule_id])->delete();
-
-            $tr->commit();
-            return $query;
-
+            if (self::getRuleById($rule_id)) {
+                //1、删除access记录
+                RoleRule::deleteByCondition(["rule_id" => $rule_id]);
+                //2、删除use_function记录
+                // (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
+                //3、删除节点记录
+                $query = Rule::findOne(["rule_id" => $rule_id])->delete();
+                $tr->commit();
+                return $query;
+            } else {
+                $tr->rollBack();
+                return false;
+            }
         } catch (\Exception $exception) {
             $tr->rollBack();
             return false;
@@ -385,7 +398,13 @@ class Rule extends \yii\db\ActiveRecord
     }
 
 
-    //获取规则分页列表
+    /**
+     * @param $page
+     * @param int $limit
+     * @param null $system_id
+     * @return array
+     * 获取规则分页列表
+     */
     public static function listOfPagin($page, $limit = 20, $system_id = null)
     {
         //构造查询
@@ -414,5 +433,28 @@ class Rule extends \yii\db\ActiveRecord
         return ['list' => $list, 'pages' => $pages];
     }
 
+
+    /**
+     * @param $user_id
+     * @param $system_id
+     * @param int $sort
+     * @param int $pid
+     * @param string $module_id
+     * @param int $menu_show
+     * @param int $status
+     * @param int $is_fifter
+     * @param null $fields
+     * @return array
+     * 获取用户菜单
+     */
+    public function actionMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null)
+    {
+        if (!($pid >= 0 && $system_id > 0)) {
+            return [];
+        }
+        $rule_model = new Rule();
+        $menus = $rule_model->getRulesTree($user_id, 1, $menu_show, $status, $pid, $fields, $is_fifter, $module_id, $sort, $system_id);
+        return $menus;
+    }
 
 }
