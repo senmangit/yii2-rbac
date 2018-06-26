@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="优化规则">
+    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/Role.php" afterPath="$PROJECT_DIR$/src/Rbac/models/Role.php" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/Rule.php" afterPath="$PROJECT_DIR$/src/Rbac/models/Rule.php" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/User.php" afterPath="$PROJECT_DIR$/src/Rbac/models/User.php" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" afterPath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +17,7 @@
     <executablePath>composer</executablePath>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6019656">
+    <splitter split-orientation="horizontal" split-proportion="0.42813268">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
@@ -66,25 +62,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="257">
+                <state relative-caret-position="1838">
                   <caret line="232" column="30" lean-forward="false" selection-start-line="232" selection-start-column="30" selection-end-line="232" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Rule.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Rule.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="271">
-                  <caret line="134" column="4" lean-forward="false" selection-start-line="134" selection-start-column="4" selection-end-line="134" selection-end-column="4" />
+                  <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
                   <folding>
                     <element signature="e#820#1380#0#PHP" expanded="false" />
                     <element signature="e#1423#1940#0#PHP" expanded="false" />
-                    <element signature="e#12186#12908#0#PHP" expanded="false" />
+                    <element signature="e#12182#12904#0#PHP" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -117,9 +113,22 @@
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
                   <first_editor relative-caret-position="516">
-                    <caret line="119" column="2" lean-forward="true" selection-start-line="119" selection-start-column="2" selection-end-line="119" selection-end-column="2" />
+                    <caret line="177" column="2" lean-forward="true" selection-start-line="177" selection-start-column="2" selection-end-line="177" selection-end-column="2" />
                     <folding>
-                      <marker date="1530002196099" expanded="true" signature="1981:2114" ph="  根据条件获取带分页的角色列表  &#10;  $...n=[])" />
+                      <marker date="1530002680968" expanded="true" signature="783:826" ph="  获取角色的主键ID&#10;  Role::ge...ey();" />
+                      <marker date="1530002680968" expanded="true" signature="833:871" ph="  获取该角色所属的系统信息&#10;  Role:...em();" />
+                      <marker date="1530002680968" expanded="true" signature="878:917" ph="  获取该角色关联的规则&#10;  Role::g...es();" />
+                      <marker date="1530002680968" expanded="true" signature="924:964" ph="  获取归属于该角色的用户&#10;  Role::...es();" />
+                      <marker date="1530002680968" expanded="true" signature="971:1130" ph="  根据条件修改角色&#10;  $conditio...ata);" />
+                      <marker date="1530002680968" expanded="true" signature="1137:1254" ph="  根据角色ID进行修改&#10;  $role_i...ata);" />
+                      <marker date="1530002680968" expanded="true" signature="1261:1311" ph="  根据角色ID条件进行删除&#10;  Role:...e_id)" />
+                      <marker date="1530002680968" expanded="true" signature="1315:1425" ph="  根据条件进行删除&#10;  $conditio...tion)" />
+                      <marker date="1530002680968" expanded="true" signature="1429:1646" ph="  获取该角色下的所有节点名&#10;  $role...m_id)" />
+                      <marker date="1530002680968" expanded="true" signature="1650:1784" ph="  通过角色ID获取角色信息&#10;  $role... &quot;*&quot;)" />
+                      <marker date="1530002680968" expanded="true" signature="1788:1969" ph="  通过条件进行获取角色&#10;  $condit... &quot;*&quot;)" />
+                      <marker date="1530002680968" expanded="true" signature="1973:2002" ph="  添加角色&#10;  $data为需要添加的数据，示例：" />
+                      <marker date="1530002680968" expanded="true" signature="2122:2267" ph="  根据条件获取带分页的角色列表  &#10;  $...n=[])" />
+                      <marker date="1530002680968" expanded="true" signature="5943:6042" ph="六、如有任何疑问欢迎加入QQ群：338461...&#10;    " />
                     </folding>
                   </first_editor>
                   <second_editor />
@@ -135,8 +144,8 @@
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="193">
-                    <caret line="227" column="11" lean-forward="true" selection-start-line="227" selection-start-column="11" selection-end-line="227" selection-end-column="11" />
+                  <first_editor relative-caret-position="424">
+                    <caret line="368" column="12" lean-forward="false" selection-start-line="368" selection-start-column="12" selection-end-line="368" selection-end-column="12" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -181,9 +190,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Rbac/models/Role.php" />
         <option value="$PROJECT_DIR$/src/Rbac/models/User.php" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
         <option value="$PROJECT_DIR$/src/Rbac/models/Rule.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -309,14 +318,7 @@
       <workItem from="1529635285665" duration="598000" />
       <workItem from="1529895962788" duration="599000" />
       <workItem from="1529979889540" duration="33000" />
-      <workItem from="1529997009152" duration="5278000" />
-    </task>
-    <task id="LOCAL-00012" summary="添加参数">
-      <created>1527849090232</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1527849090232</updated>
+      <workItem from="1529997009152" duration="5670000" />
     </task>
     <task id="LOCAL-00013" summary="优化模型">
       <created>1528091033283</created>
@@ -654,11 +656,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529459736169</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="优化，readme">
+      <created>1530002363264</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1530002363264</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73147000" />
+    <option name="totallyTimeSpent" value="73539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -670,9 +679,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.02793296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9854749" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13012478" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12849163" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12849163" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -717,7 +726,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修正bug" />
     <MESSAGE value="增加系统状态校验" />
     <MESSAGE value="增加规则角色同名校验" />
     <MESSAGE value="pid写错" />
@@ -742,7 +750,8 @@
     <MESSAGE value="删除角色的部分属性" />
     <MESSAGE value="readme" />
     <MESSAGE value="优化规则" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化规则" />
+    <MESSAGE value="优化，readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化，readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -861,7 +870,7 @@
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12186#12908#0#PHP" expanded="false" />
+            <element signature="e#12182#12904#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -914,7 +923,7 @@
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12186#12908#0#PHP" expanded="false" />
+            <element signature="e#12182#12904#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -956,7 +965,7 @@
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12186#12908#0#PHP" expanded="false" />
+            <element signature="e#12182#12904#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1071,27 +1080,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="516">
-            <caret line="119" column="2" lean-forward="true" selection-start-line="119" selection-start-column="2" selection-end-line="119" selection-end-column="2" />
-            <folding>
-              <marker date="1530002196099" expanded="true" signature="1981:2114" ph="  根据条件获取带分页的角色列表  &#10;  $...n=[])" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="232" column="30" lean-forward="false" selection-start-line="232" selection-start-column="30" selection-end-line="232" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1291">
@@ -1105,12 +1093,31 @@
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
-          <caret line="134" column="4" lean-forward="false" selection-start-line="134" selection-start-column="4" selection-end-line="134" selection-end-column="4" />
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12186#12908#0#PHP" expanded="false" />
+            <element signature="e#12182#12904#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1838">
+          <caret line="232" column="30" lean-forward="false" selection-start-line="232" selection-start-column="30" selection-end-line="232" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="424">
+            <caret line="368" column="12" lean-forward="false" selection-start-line="368" selection-start-column="12" selection-end-line="368" selection-end-column="12" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
