@@ -205,7 +205,7 @@ class UserRole extends \yii\db\ActiveRecord
                 //新增
                 if ($role_id_arr) {
                     foreach ($role_id_arr as $k => $v) {
-                        if(!self::setRoleByUserId($user_id, $v)){
+                        if (!self::setRoleByUserId($user_id, $v)) {
                             $transaction->rollBack();
                             return false;
                         }

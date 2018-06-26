@@ -143,10 +143,11 @@ class User extends \yii\db\ActiveRecord
     /**
      * @param $user_id
      * @param $system_id
+     * @param $status
      * @return array
      * 通过用户ID获取所有权限节点名称
      */
-    public static function getAccessByUserId($user_id, $status, $system_id)
+    public static function getAccessByUserId($user_id, $status=0, $system_id)
     {
 
         $access = [];
@@ -227,7 +228,13 @@ class User extends \yii\db\ActiveRecord
         return @array_flip(array_flip($role_arr));
     }
 
-    //获取用户分页列表
+    /**
+     * @param $page
+     * @param int $limit
+     * @param int $sort
+     * @param null $keywords
+     * @return array
+     */
     public static function listOfPagin($page, $limit = 20, $sort = 1, $keywords = NULL)
     {
         //构造查询

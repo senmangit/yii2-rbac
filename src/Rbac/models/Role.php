@@ -100,7 +100,7 @@ class Role extends \yii\db\ActiveRecord
 
     /**
      * @param $data
-     * @param array $condition
+     * @param $role_id
      * @return int
      * 根据ID进行修改
      */
@@ -138,7 +138,7 @@ class Role extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param $role_id
+     * @param $condition
      * @return int
      * 根据条件进行删除
      */
@@ -197,14 +197,14 @@ class Role extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param $id
+     * @param $role_id
      * @param string $fields
      * @return mixed
      * 通过角色ID获取角色信息
      */
-    public static function getRoleById($id, $fields = "*")
+    public static function getRoleById($role_id, $fields = "*")
     {
-        return Role::find()->select($fields)->where(["role_id" => $id])->one();
+        return Role::find()->select($fields)->where(["role_id" => $role_id])->one();
     }
 
     /**

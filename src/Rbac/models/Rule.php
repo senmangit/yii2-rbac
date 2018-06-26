@@ -135,15 +135,18 @@ class Rule extends \yii\db\ActiveRecord
 
     /**
      * @param $id
-     * @param $type 当type=0为角色ID，否则为用户ID
+     * @param int $type 当type=0为角色ID，否则为用户ID
      * @param null $menu_show
      * @param null $status
      * @param int $pid
-     * @param $module_id
+     * @param null $fields
+     * @param int $is_fifter
+     * @param string $module_id
+     * @param int $sort
+     * @param $system_id
      * @return array
-     * 获取权限节点树
      */
-    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id, $sort = 1, $system_id)
+    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id = '', $sort = 1, $system_id)
     {
 
         try {
@@ -447,7 +450,7 @@ class Rule extends \yii\db\ActiveRecord
      * @return array
      * 获取用户菜单
      */
-    public function actionMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null)
+    public function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null)
     {
         if (!($pid >= 0 && $system_id > 0)) {
             return [];
