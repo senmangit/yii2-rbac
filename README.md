@@ -286,8 +286,26 @@ composer require senman/yii2-rbac-manager dev-master
   Rule::getRootByRuleId($rule_id)
   
   新增规则节点 
+  
+  
   $data为需要添加的数据，示例：
+    
+  $data=[
+     'system_id'=>1, 
+     'name'=>'rule/add', //后台执行的路由，必填     
+     'title'=>'权限管理',  //规则节点的标题，必填     
+     'href'=>'链接地址',    //前台链接地址，非必填     
+     'pid'=>'0', //上级ID     
+     'status'=>0,  //状态，0：启用，1：禁用     
+     'remark'=>'备注',  //非必填     
+     'sort'=>'0',//排序，非必填     
+     'menu_show'=>'0',//是否显示菜单，0：不显示，1：显示       
+     'icon'=>'0',//菜单图标 非必填      
+  ]
+  
   Rule::add($data)
+  
+  
   获取规则节点的分页列表
   
   $page 页码，默认为0
