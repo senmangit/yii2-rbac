@@ -43,23 +43,23 @@ composer require senman/yii2-rbac-manager dev-master
   
   角色相关：
   
-  获取角色的主键ID 
+  获取角色模型的主键ID 
   
   Role::getRolePrimaryKey(); 
   
   
   
-  获取该角色所属的系统信息
+  获取该角色模型所属的系统信息
   
   Role::getSystem();
   
   
-  获取该角色关联的规则
+  获取该角色模型关联的规则
   
   Role::getRoleRules();
   
   
-  获取归属于该角色的用户
+  获取归属于当前角色模型的用户
   
   Role::getUserRoles();
   
