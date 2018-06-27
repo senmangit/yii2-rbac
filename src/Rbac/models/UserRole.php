@@ -124,10 +124,13 @@ class UserRole extends \yii\db\ActiveRecord
         }
     }
 
+
     /**
+     * @param $user_id
+     * @param null $system_id
+     * @param array $fields
      * 根据用户id查询到用户所有的角色信息
-     * @param $userId
-     * @return array|\yii\db\ActiveRecord[]
+     * @return mixed
      */
     public static function getUserRoleByUserId($user_id, $system_id = null, $fields = ['*'])
     {
