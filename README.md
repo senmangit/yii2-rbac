@@ -360,9 +360,7 @@ composer require senman/yii2-rbac-manager dev-master
   $user_id 用户ID
   
   $role_id 角色ID  
-  
-  $system_id 系统ID 必填
-  
+    
   UserRole::setRoleByUserId($user_id, $role_id)
   
   
@@ -379,8 +377,20 @@ composer require senman/yii2-rbac-manager dev-master
   
   $role_id_arr 角色ID 数组
   
+  $system_id 系统ID 必填
+  
   UserRole::setUserRole($user_id, $role_id_arr, $system_id)
   
+   
+  根据用户id查询到用户所有的角色信息
+  
+  $user_id 用户ID
+    
+  $fields 获取字段的数组，选填
+    
+  $system_id 系统ID，当获取子系统的该用户对应的角色时则传实际的系统ID；当传NULL时,则获取所有的系统的角色
+  
+  UserRole::getUserRoleByUserId($user_id, $system_id = NULL, $fields = ['*'])
    
 六、如有任何疑问欢迎加入QQ群：338461207 进行交流
 

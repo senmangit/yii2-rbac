@@ -124,23 +124,23 @@ class UserRole extends \yii\db\ActiveRecord
         }
     }
 
-
     /**
-     * 根据用户id查询到用户所有的角色名称
+     * 根据用户id查询到用户所有的角色信息
      * @param $userId
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getUserRoleNameByUser($userId)
+    public static function getUserRoleByUserId($user_id, $system_id = null, $fields = ['*'])
     {
-        return static::find()
-            ->select(['name', 'a.role_id AS role_id'])
-            ->from(static::tableName() . ' AS a')
-            ->leftJoin(Role::tableName() . ' AS b', 'a.role_id = b.role_id')
-            ->where(['a.user_id' => $userId, 'b.status' => 0])
-            ->asArray()
-            ->all();
+        $query = static::find()
+            ->select($fields)
+            ->from(static::tableName() . ' AS ur')
+            ->innerJoin(Role::tableName() . ' AS r', 'r.role_id = ur.role_id')
+            ->andWhere(['ur.user_id' => $user_id]);
+        if ($system_id > 0) {
+            $query->andWhere(["r.system_id" => $system_id]);
+        }
+        return $query->asArray()->all();
     }
-
 
     /**
      * @param $user_id

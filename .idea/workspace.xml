@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Rbac/models/User.php" afterPath="$PROJECT_DIR$/src/Rbac/models/User.php" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" afterPath="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +18,7 @@
     <executablePath>composer</executablePath>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5817958">
+    <splitter split-orientation="horizontal" split-proportion="0.4286593">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
@@ -30,11 +31,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="281">
-                  <caret line="121" column="27" lean-forward="false" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
+                <state relative-caret-position="423">
+                  <caret line="133" column="64" lean-forward="true" selection-start-line="133" selection-start-column="48" selection-end-line="133" selection-end-column="64" />
                   <folding>
                     <element signature="e#31#39#0#PHP" expanded="true" />
                   </folding>
@@ -62,11 +63,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="UserRole.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3585">
-                  <caret line="232" column="30" lean-forward="false" selection-start-line="232" selection-start-column="30" selection-end-line="232" selection-end-column="30" />
+                <state relative-caret-position="508">
+                  <caret line="134" column="16" lean-forward="false" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -126,8 +127,8 @@
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="3009">
-                    <caret line="177" column="2" lean-forward="false" selection-start-line="177" selection-start-column="2" selection-end-line="177" selection-end-column="2" />
+                  <first_editor relative-caret-position="532">
+                    <caret line="363" column="7" lean-forward="false" selection-start-line="363" selection-start-column="2" selection-end-line="363" selection-end-column="7" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -143,8 +144,8 @@
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="255">
-                    <caret line="45" column="8" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+                  <first_editor relative-caret-position="563">
+                    <caret line="390" column="31" lean-forward="false" selection-start-line="390" selection-start-column="31" selection-end-line="390" selection-end-column="31" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -161,6 +162,7 @@
       <find>getAccess</find>
       <find>SUNLANDS</find>
       <find>getRole</find>
+      <find>UserR</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -187,11 +189,11 @@
         <option value="$PROJECT_DIR$/src/Rbac/models/System.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Rbac/models/Role.php" />
-        <option value="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
         <option value="$PROJECT_DIR$/src/Rbac/models/Rule.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Rbac/models/User.php" />
+        <option value="$PROJECT_DIR$/src/Rbac/models/UserRole.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -203,8 +205,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="401" />
-    <option name="y" value="41" />
+    <option name="x" value="508" />
+    <option name="y" value="92" />
     <option name="width" value="1743" />
     <option name="height" value="870" />
   </component>
@@ -318,14 +320,7 @@
       <workItem from="1529895962788" duration="599000" />
       <workItem from="1529979889540" duration="33000" />
       <workItem from="1529997009152" duration="7177000" />
-      <workItem from="1530069237027" duration="1567000" />
-    </task>
-    <task id="LOCAL-00016" summary="去掉开发标识">
-      <created>1528104054399</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1528104054399</updated>
+      <workItem from="1530069237027" duration="3268000" />
     </task>
     <task id="LOCAL-00017" summary="加入不需要权限校验的模块的评比设置">
       <created>1528176932714</created>
@@ -663,11 +658,18 @@
       <option name="project" value="LOCAL" />
       <updated>1530069446125</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="修复用户列表主键取值不对的bug">
+      <created>1530091038101</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1530091038101</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76613000" />
+    <option name="totallyTimeSpent" value="78314000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -726,7 +728,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="增加规则角色同名校验" />
     <MESSAGE value="pid写错" />
     <MESSAGE value="修复系统主键错误" />
     <MESSAGE value="修复系统模型参数、注释错误" />
@@ -751,7 +752,8 @@
     <MESSAGE value="优化规则" />
     <MESSAGE value="优化，readme" />
     <MESSAGE value="json" />
-    <option name="LAST_COMMIT_MESSAGE" value="json" />
+    <MESSAGE value="修复用户列表主键取值不对的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复用户列表主键取值不对的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1042,17 +1044,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="3009">
-            <caret line="177" column="2" lean-forward="false" selection-start-line="177" selection-start-column="2" selection-end-line="177" selection-end-column="2" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1103,21 +1094,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3585">
-          <caret line="232" column="30" lean-forward="false" selection-start-line="232" selection-start-column="30" selection-end-line="232" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="121" column="27" lean-forward="false" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
+        <state relative-caret-position="423">
+          <caret line="133" column="64" lean-forward="true" selection-start-line="133" selection-start-column="48" selection-end-line="133" selection-end-column="64" />
           <folding>
             <element signature="e#31#39#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="532">
+            <caret line="363" column="7" lean-forward="false" selection-start-line="363" selection-start-column="2" selection-end-line="363" selection-end-column="7" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rbac/models/UserRole.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="134" column="16" lean-forward="false" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
