@@ -147,7 +147,7 @@ class User extends \yii\db\ActiveRecord
      * @return array
      * 通过用户ID获取所有权限节点名称
      */
-    public static function getAccessByUserId($user_id, $status=0, $system_id)
+    public static function getAccessByUserId($user_id, $status = 0, $system_id)
     {
 
         $access = [];
@@ -272,7 +272,8 @@ class User extends \yii\db\ActiveRecord
             foreach ($list as $k => $v) {
                 //获取每个用户对应的角色信息
                 if ($v) {
-                    $roles_id = UserRole::find()->where(["user_id" => $v])->all();
+                    $user_prikey = User::getUserPrimaryKey();
+                    $roles_id = UserRole::find()->where(["user_id" => $v[$user_prikey]])->all();
                     $role_temp = [];
                     foreach ($roles_id as $rk => $rv) {
                         $role_temp[] = Role::findOne(["role_id" => $rv['role_id']]);
