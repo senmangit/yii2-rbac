@@ -76,7 +76,7 @@ class Rule extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRoleRules()
+    public  function getRoleRules()
     {
         return $this->hasMany(RoleRule::className(), ['rule_id' => 'rule_id']);
     }
@@ -95,7 +95,7 @@ class Rule extends \yii\db\ActiveRecord
      * @return mixed
      * 根据ID 获取规则信息
      */
-    public function getRuleById($rule_id, $fields = "*")
+    public static function getRuleById($rule_id, $fields = ["*"])
     {
         return Rule::find()->select($fields)->where(["rule_id" => $rule_id])->one();
     }
@@ -209,6 +209,7 @@ class Rule extends \yii\db\ActiveRecord
                     //检查状态
                     if ($type == 0) {//当为0的时候为角色ID
                         //获取角色授权状态
+                        $role = new Role();
                         $access_status = in_array($rule_list[$s]['name'], Role::getAccessByRoleId($id, "name", 0, $system_id)) == true ? 1 : 0;
                     } else {//否则为用户ID
                         //获取用户授权状态
@@ -245,20 +246,18 @@ class Rule extends \yii\db\ActiveRecord
 //                        }
 //                    }
 
-
                     //删除子节点为空的树
                     if ($del_empty_child_rule) {
 
                         // 非最后一层级的目录，但用户没有该层级下子目录的权限，则移除该根目录。
-                        $isParent = Rule::findOne(['pid' => $rv['rule_id'], 'menu_show' => 1]);
+                        $isParent = Rule::find()->select(['rule_id'])->where(['pid' => $rv['rule_id'], 'menu_show' => 1])->one();
                         if ($isParent && !count($rule_list[$rk]['child_rules'])) {
                             unset($rule_list[$rk]);
                         }
 
-
                         //若是pid为0的顶级树则当其没有任何子节点时也删除
                         // 非最后一层级的目录，但用户没有该层级下子目录的权限，则移除该根目录。
-                        $isParent = Rule::findOne(['pid' => $pid, 'menu_show' => 1]);
+                        $isParent = Rule::find()->select(['rule_id'])->where(['pid' => $pid, 'menu_show' => 1])->one();
                         if ($isParent && !count($rule_list[$rk]['child_rules'])) {
                             unset($rule_list[$rk]);
                         }
@@ -267,6 +266,7 @@ class Rule extends \yii\db\ActiveRecord
                     }
                 }
             }
+
             //排序处理
             if ($rule_list) {
                 @usort($rule_list, function ($a, $b) use ($sort) {
@@ -464,7 +464,7 @@ class Rule extends \yii\db\ActiveRecord
      * @return array
      * 获取用户菜单
      */
-    public function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null, $del_empty_child_rules = 0)
+    public static function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null, $del_empty_child_rules = 0)
     {
         if (!($pid >= 0 && $system_id > 0)) {
             return [];
@@ -473,5 +473,22 @@ class Rule extends \yii\db\ActiveRecord
         $menus = $rule_model->getRulesTree($user_id, 1, $menu_show, $status, $pid, $fields, $is_fifter, $module_id, $sort, $system_id, $del_empty_child_rules);
         return $menus;
     }
+
+
+    /**
+     * @param $rule_id
+     * @return bool
+     * 判断节点状态
+     */
+    public static function is_valid($rule_id)
+    {
+        $rule = Rule::getRuleById($rule_id,['status']);
+        if ($rule['status'] == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

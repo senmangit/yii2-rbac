@@ -180,8 +180,28 @@ class Role extends \yii\db\ActiveRecord
                             }
                         }
                     }
+
+//                    //判断每一个节点的上级是否有禁用，若是其上级被禁用则删除该节点下的所有子节点
+//                    foreach ($rule_arr as $rk => $rv) {
+//                        $rule_root_arr = Rule::getRootByRuleId($rv);//获取该id的所有上级节点
+//                        foreach ($rule_root_arr as $r => $a) {
+//                            if (!Rule::is_valid($a)) {//判断该节点是否被禁用，被禁用则判断删除其所有子节点
+//                                $son_rule_list = Rule::getSonByRuleId($a);//获取该规则iD的所有子节点
+//                                foreach ($rule_arr as $rsk => $rsv) {
+//                                    if (in_array($rsv, $son_rule_list)) {
+//                                        unset($rule_arr[$rsk]);
+//                                    }
+//                                }
+//                            }
+//
+//                        }
+//                    }
+
                     $rule_arr = @array_flip(array_flip($rule_arr));//获取到所有该角色的所有节点ID
-                    $rules = Rule::find()->where(['status' => $status, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->all();//获取符合条件的规则
+
+                    //获取对应的规则名称
+                    $rules = Rule::find()->where(['status' => $status, "system_id" => $system_id])->select([$field])->andWhere(['in', 'rule_id', $rule_arr])->asArray()->all();//获取符合条件的规则
+
                     if ($rules) {
                         foreach ($rules as $rk => $rv) {
                             $access[] = $rv[$field];
@@ -306,4 +326,6 @@ class Role extends \yii\db\ActiveRecord
             ->where($condition)
             ->all();
     }
+
+
 }
