@@ -144,9 +144,10 @@ class Rule extends \yii\db\ActiveRecord
      * @param string $module_id
      * @param int $sort
      * @param $system_id
+     * @param $del_empty_child_rule
      * @return array
      */
-    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id = '', $sort = 1, $system_id)
+    public function getRulesTree($id, $type = 0, $menu_show = null, $status = null, $pid = 0, $fields = null, $is_fifter = 0, $module_id = '', $sort = 1, $system_id, $del_empty_child_rule = 0)
     {
 
         try {
@@ -245,12 +246,25 @@ class Rule extends \yii\db\ActiveRecord
 //                        }
 //                    }
 
-                    if ($type == 1) {
+
+                    //删除子节点为空的树
+                    if ($del_empty_child_rule) {
+
                         // 非最后一层级的目录，但用户没有该层级下子目录的权限，则移除该根目录。
                         $isParent = Rule::findOne(['pid' => $rv['rule_id'], 'menu_show' => 1]);
                         if ($isParent && !count($rule_list[$rk]['child_rules'])) {
                             unset($rule_list[$rk]);
                         }
+
+
+                        //若是pid为0的顶级树则当其没有任何子节点时也删除
+                        // 非最后一层级的目录，但用户没有该层级下子目录的权限，则移除该根目录。
+                        $isParent = Rule::findOne(['pid' => $pid, 'menu_show' => 1]);
+                        if ($isParent && !count($rule_list[$rk]['child_rules'])) {
+                            unset($rule_list[$rk]);
+                        }
+
+
                     }
                 }
             }
@@ -446,17 +460,18 @@ class Rule extends \yii\db\ActiveRecord
      * @param int $menu_show
      * @param int $status
      * @param int $is_fifter
-     * @param null $fields
+     * @param array $fields
+     * @param int $del_empty_child_rules
      * @return array
      * 获取用户菜单
      */
-    public function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null)
+    public function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 0, $is_fifter = 1, $fields = null, $del_empty_child_rules = 0)
     {
         if (!($pid >= 0 && $system_id > 0)) {
             return [];
         }
         $rule_model = new Rule();
-        $menus = $rule_model->getRulesTree($user_id, 1, $menu_show, $status, $pid, $fields, $is_fifter, $module_id, $sort, $system_id);
+        $menus = $rule_model->getRulesTree($user_id, 1, $menu_show, $status, $pid, $fields, $is_fifter, $module_id, $sort, $system_id, $del_empty_child_rules);
         return $menus;
     }
 
