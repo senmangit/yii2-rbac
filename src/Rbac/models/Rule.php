@@ -209,7 +209,6 @@ class Rule extends \yii\db\ActiveRecord
                     //检查状态
                     if ($type == 0) {//当为0的时候为角色ID
                         //获取角色授权状态
-                        $role = new Role();
                         $access_status = in_array($rule_list[$s]['name'], Role::getAccessByRoleId($id, "name", 0, $system_id)) == true ? 1 : 0;
                     } else {//否则为用户ID
                         //获取用户授权状态

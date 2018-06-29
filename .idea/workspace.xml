@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="根据用户id获取对应的角色">
+    <list default="true" id="006f2d15-6378-42a9-89a7-38b660f14092" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/Rbac/models/Rule.php" afterPath="$PROJECT_DIR$/src/Rbac/models/Rule.php" />
     </list>
@@ -89,12 +89,12 @@
           <file leaf-file-name="Rule.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="471" column="9" lean-forward="false" selection-start-line="471" selection-start-column="9" selection-end-line="471" selection-end-column="9" />
+                <state relative-caret-position="546">
+                  <caret line="473" column="22" lean-forward="false" selection-start-line="473" selection-start-column="22" selection-end-line="473" selection-end-column="22" />
                   <folding>
                     <element signature="e#820#1380#0#PHP" expanded="false" />
                     <element signature="e#1423#1940#0#PHP" expanded="false" />
-                    <element signature="e#12655#13377#0#PHP" expanded="false" />
+                    <element signature="e#12611#13333#0#PHP" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -321,14 +321,7 @@
       <workItem from="1529997009152" duration="7177000" />
       <workItem from="1530069237027" duration="4876000" />
       <workItem from="1530149348827" duration="1222000" />
-      <workItem from="1530251519997" duration="905000" />
-    </task>
-    <task id="LOCAL-00019" summary="修正pid为0的情况">
-      <created>1528253021923</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1528253021924</updated>
+      <workItem from="1530251519997" duration="1008000" />
     </task>
     <task id="LOCAL-00020" summary="修正">
       <created>1528256684504</created>
@@ -666,11 +659,18 @@
       <option name="project" value="LOCAL" />
       <updated>1530092786074</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="是否删除子节点为空的树">
+      <created>1530256795663</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1530256795663</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82049000" />
+    <option name="totallyTimeSpent" value="82152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -729,7 +729,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复系统主键错误" />
     <MESSAGE value="修复系统模型参数、注释错误" />
     <MESSAGE value="修复bug" />
     <MESSAGE value="修改ID" />
@@ -754,7 +753,8 @@
     <MESSAGE value="json" />
     <MESSAGE value="修复用户列表主键取值不对的bug" />
     <MESSAGE value="根据用户id获取对应的角色" />
-    <option name="LAST_COMMIT_MESSAGE" value="根据用户id获取对应的角色" />
+    <MESSAGE value="是否删除子节点为空的树" />
+    <option name="LAST_COMMIT_MESSAGE" value="是否删除子节点为空的树" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -770,7 +770,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Rbac/models/Rule.php</url>
-          <line>320</line>
+          <line>319</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -873,7 +873,7 @@
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12655#13377#0#PHP" expanded="false" />
+            <element signature="e#12611#13333#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -926,7 +926,7 @@
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12655#13377#0#PHP" expanded="false" />
+            <element signature="e#12611#13333#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -968,7 +968,7 @@
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12655#13377#0#PHP" expanded="false" />
+            <element signature="e#12611#13333#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1114,12 +1114,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="471" column="9" lean-forward="false" selection-start-line="471" selection-start-column="9" selection-end-line="471" selection-end-column="9" />
+        <state relative-caret-position="546">
+          <caret line="473" column="22" lean-forward="false" selection-start-line="473" selection-start-column="22" selection-end-line="473" selection-end-column="22" />
           <folding>
             <element signature="e#820#1380#0#PHP" expanded="false" />
             <element signature="e#1423#1940#0#PHP" expanded="false" />
-            <element signature="e#12655#13377#0#PHP" expanded="false" />
+            <element signature="e#12611#13333#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
