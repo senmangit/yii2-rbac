@@ -80,8 +80,16 @@ class System extends \yii\db\ActiveRecord
         return $this->hasMany(Rule::className(), ['system_id' => 'system_id']);
     }
 
-    //获取系统分页列表
-    public static function listOfPagin($page, $limit = 20, $condition = [])
+    /**
+     * @param $page
+     * @param int $limit
+     * @param array $condition
+     * @param int $sort
+     * @return array
+     * 获取系统分页列表
+     */
+
+    public static function listOfPagin($page, $limit = 20, $condition = [], $sort = 0)
     {
         //构造查询
         $query = System::find();
@@ -99,6 +107,14 @@ class System extends \yii\db\ActiveRecord
             $limit = 20;
         }
 
+
+        if ($sort == 1) {
+            $query->orderBy(['sort' => SORT_DESC]);
+        } else {
+            $query->orderBy(['sort' => SORT_ASC]);
+        }
+
+
         //获取数据
         $list = $query->offset(($page - 1) * $limit)
             ->limit($limit)
@@ -108,16 +124,24 @@ class System extends \yii\db\ActiveRecord
         return ['list' => $list, 'pages' => $pages];
     }
 
+
     /**
      * 获取系统列表（下拉列表框）
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getSystemList($condition = ['status' => 0], $fields = "*")
+    public static function getSystemList($condition = ['status' => 0], $fields = "*", $sort = 0)
     {
-        return static::find()
+        $query = static::find()
             ->select($fields)
-            ->where($condition)
-            ->all();
+            ->where($condition);
+
+        if ($sort == 1) {
+            $query->orderBy(['sort' => SORT_DESC]);
+        } else {
+            $query->orderBy(['sort' => SORT_ASC]);
+        }
+
+        return $query->all();
     }
 
     /**
@@ -150,7 +174,7 @@ class System extends \yii\db\ActiveRecord
     {
         //组织条件
         $condition = [
-            "system_id"=> $system_id,
+            "system_id" => $system_id,
         ];
 
         //返回结果
