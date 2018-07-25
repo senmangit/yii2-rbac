@@ -18,6 +18,11 @@ use yii\data\Pagination;
  */
 class Role extends \yii\db\ActiveRecord
 {
+
+
+    public $status_invalid = 0;//无效
+    public $status_effective = 1;//有效
+
     /**
      * {@inheritdoc}
      */
@@ -38,6 +43,28 @@ class Role extends \yii\db\ActiveRecord
             [['system_id'], 'exist', 'skipOnError' => true, 'targetClass' => System::className(), 'targetAttribute' => ['system_id' => 'system_id']],
         ];
     }
+
+    /**
+     * @return int
+     * 无效
+     */
+    public static function getInvalidVal()
+    {
+        $cron = new Role();
+        return $cron->status_invalid;
+
+    }
+
+    /**
+     * @return int
+     * 有效
+     */
+    public static function getEffectiveVal()
+    {
+        $cron = new Role();
+        return $cron->status_invalid;
+    }
+
 
     /**
      * {@inheritdoc}
@@ -157,12 +184,12 @@ class Role extends \yii\db\ActiveRecord
      * @return array|null
      * 获取该角色下的所有节点名
      */
-    public static function getAccessByRoleId($role_id, $field = "name", $status = 0, $system_id)
+    public static function getAccessByRoleId($role_id, $field = "name", $status = 1, $system_id)
     {
         $access = [];
         try {
             if (System::is_valid($system_id)) {
-                //状态，0：启用，1：不启用
+                //状态，1：启用，0：不启用
                 $condition = [
                     "role_id" => $role_id,
                     "status" => $status,
@@ -319,7 +346,7 @@ class Role extends \yii\db\ActiveRecord
      * 获取角色列表（下拉列表框）
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getRoleList($condition = ['status' => 0], $fields = ['role_id', 'name'])
+    public static function getRoleList($condition = ['status' => self::getEffectiveVal()], $fields = ['role_id', 'name'])
     {
         return static::find()
             ->select($fields)

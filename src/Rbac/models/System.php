@@ -129,7 +129,7 @@ class System extends \yii\db\ActiveRecord
      * 获取系统列表（下拉列表框）
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getSystemList($condition = ['status' => 0], $fields = "*", $sort = 0)
+    public static function getSystemList($condition = ['status' => self::$status_active], $fields = "*", $sort = 0)
     {
         $query = static::find()
             ->select($fields)
