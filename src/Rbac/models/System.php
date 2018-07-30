@@ -18,19 +18,22 @@ use yii\data\Pagination;
  * @property Role[] $roles
  * @property Rule[] $rules
  */
-class System extends \yii\db\ActiveRecord
+class System extends  Base
 {
-
-    public static $status_active = 0;
-    public static $status_disable = 1;
 
     /**
      * {@inheritdoc}
      */
+    public static $model_name = "system";
+
+
     public static function tableName()
     {
-        return '{{system}}';
+        $model_parm = parent::getRbacParam();
+        $user_model_parm = $model_parm[self::$model_name . '_model'];
+        return $user_model_parm::tableName();
     }
+
 
     /**
      * {@inheritdoc}
@@ -129,7 +132,7 @@ class System extends \yii\db\ActiveRecord
      * 获取系统列表（下拉列表框）
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getSystemList($condition = ['status' => self::$status_active], $fields = "*", $sort = 0)
+    public static function getSystemList($condition, $fields = "*", $sort = 0)
     {
         $query = static::find()
             ->select($fields)
@@ -153,7 +156,7 @@ class System extends \yii\db\ActiveRecord
     {
         try {
             $system = self::getSystemById($system_id, ['status']);
-            if ($system['status'] == self::$status_active) {
+            if ($system['status'] == self::getActiveVal()) {
                 return true;
             } else {
                 return false;

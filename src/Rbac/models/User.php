@@ -12,56 +12,21 @@ use yii\data\Pagination;
  * @property int $status 用户状态，10：启用，0：禁用
  * @property UserRole[] $userRoles
  */
-class User extends \yii\db\ActiveRecord
+class User extends Base
 {
-    /**
-     * 获取配置的Rbac参数
-     */
-    public static function getRbacParam()
-    {
-        return Yii::$app->params['rbac_manager'];
-    }
 
     /**
      * {@inheritdoc}
      */
+
+    public static $model_name = "user";
+
+
     public static function tableName()
     {
-        $model_parm = self::getRbacParam();
-        $user_model_parm = $model_parm['user_model'];
+        $model_parm = parent::getRbacParam();
+        $user_model_parm = $model_parm[self::$model_name . '_model'];
         return $user_model_parm::tableName();
-    }
-
-
-    /**
-     * @return mixed
-     * 获取用户状态
-     */
-    public static function getStatusVal()
-    {
-        $parm = self::getRbacParam();
-        return $parm['user_status'];
-    }
-
-    /**
-     * @return mixed
-     * 获取删除的值
-     */
-
-    public static function getDelVal()
-    {
-        $status_val = self::getStatusVal();
-        return $status_val['status_deleted'];
-    }
-
-    /**
-     * @return mixed
-     * 获取状态的值
-     */
-    public static function getActiveVal()
-    {
-        $status_val = self::getStatusVal();
-        return $status_val['status_active'];
     }
 
 
@@ -147,7 +112,7 @@ class User extends \yii\db\ActiveRecord
      * @return array
      * 通过用户ID获取所有权限节点名称
      */
-    public static function getAccessByUserId($user_id, $status = 0, $system_id)
+    public static function getAccessByUserId($user_id, $status = 1, $system_id)
     {
 
         $access = [];

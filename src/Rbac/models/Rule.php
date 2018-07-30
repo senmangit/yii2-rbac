@@ -25,18 +25,19 @@ use yii\data\Pagination;
  * @property RoleRule[] $roleRules
  * @property System $system
  */
-class Rule extends \yii\db\ActiveRecord
+class Rule extends Base
 {
-    public $status_invalid = 0;//无效
-    public $status_effective = 1;//有效
-
-
     /**
      * {@inheritdoc}
      */
+    public static $model_name = "rule";
+
+
     public static function tableName()
     {
-        return '{{rule}}';
+        $model_parm = parent::getRbacParam();
+        $user_model_parm = $model_parm[self::$model_name . '_model'];
+        return $user_model_parm::tableName();
     }
 
     /**
@@ -53,27 +54,6 @@ class Rule extends \yii\db\ActiveRecord
             [['href'], 'string', 'max' => 255],
             [['system_id'], 'exist', 'skipOnError' => true, 'targetClass' => System::className(), 'targetAttribute' => ['system_id' => 'system_id']],
         ];
-    }
-
-    /**
-     * @return int
-     * 无效
-     */
-    public static function getInvalidVal()
-    {
-        $cron = new Role();
-        return $cron->status_invalid;
-
-    }
-
-    /**
-     * @return int
-     * 有效
-     */
-    public static function getEffectiveVal()
-    {
-        $cron = new Role();
-        return $cron->status_invalid;
     }
 
     /**
@@ -235,7 +215,7 @@ class Rule extends \yii\db\ActiveRecord
                     if ($type == 0) {//当为0的时候为角色ID
                         //获取角色授权状态
                         $role = new Role();
-                        $access_status = in_array($rule_list[$s]['name'], Role::getAccessByRoleId($id, "name", self::getEffectiveVal(), $system_id)) == true ? 1 : 0;
+                        $access_status = in_array($rule_list[$s]['name'], Role::getAccessByRoleId($id, "name", 0, $system_id)) == true ? 1 : 0;
                     } else {//否则为用户ID
                         //获取用户授权状态
                         $access_status = RoleRule::hasAuth($id, $rule_list[$s]['name'], $module_id, $system_id) == true ? 1 : 0;
@@ -408,7 +388,7 @@ class Rule extends \yii\db\ActiveRecord
             if ($data['title'] == "") {
                 return false;
             }
-            if (!in_array($data['status'], [0, 1])) {//状态，1：启用，0：禁用
+            if (!in_array($data['status'], [self::getActiveVal(), self::getDisableVal()])) {//状态，0：启用，1：禁用
                 return false;
             }
             if (!in_array($data['menu_show'], [0, 1])) {//是否显示菜单，0：不显示，1：显示
@@ -489,10 +469,13 @@ class Rule extends \yii\db\ActiveRecord
      * @return array
      * 获取用户菜单
      */
-    public static function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = 1, $is_fifter = 1, $fields = null, $del_empty_child_rules = 0)
+    public static function getMenus($user_id, $system_id, $sort = 1, $pid = 0, $module_id = "", $menu_show = 1, $status = null, $is_fifter = 1, $fields = null, $del_empty_child_rules = 0)
     {
         if (!($pid >= 0 && $system_id > 0)) {
             return [];
+        }
+        if ($status == null) {
+            $status = self::getActiveVal();
         }
         $rule_model = new Rule();
         $menus = $rule_model->getRulesTree($user_id, 1, $menu_show, $status, $pid, $fields, $is_fifter, $module_id, $sort, $system_id, $del_empty_child_rules);
@@ -508,7 +491,7 @@ class Rule extends \yii\db\ActiveRecord
     public static function is_valid($rule_id)
     {
         $rule = Rule::getRuleById($rule_id, ['status']);
-        if ($rule['status'] == self::getInvalidVal()) {
+        if ($rule['status'] == self::getActiveVal()) {
             return true;
         } else {
             return false;

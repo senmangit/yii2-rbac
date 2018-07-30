@@ -14,14 +14,18 @@ use Yii;
  * @property Role $role
  * @property Rule $rule
  */
-class RoleRule extends \yii\db\ActiveRecord
+class RoleRule extends Base
 {
     /**
      * {@inheritdoc}
      */
+    public static $model_name = "role_rule";
+
     public static function tableName()
     {
-        return '{{role_rule}}';
+        $model_parm = parent::getRbacParam();
+        $user_model_parm = $model_parm[self::$model_name . '_model'];
+        return $user_model_parm::tableName();
     }
 
     /**
@@ -75,7 +79,7 @@ class RoleRule extends \yii\db\ActiveRecord
     public static function getAccess($user_id, $system_id)
     {
         try {
-            $access_arr = User::getAccessByUserId($user_id, 0, $system_id);
+            $access_arr = User::getAccessByUserId($user_id, self::getActiveVal(), $system_id);
         } catch (\Exception $exception) {
             $access_arr = [];
         }
@@ -245,7 +249,7 @@ class RoleRule extends \yii\db\ActiveRecord
             $role = Role::findOne(["role_id" => $role_id]);
 
             if ($role) {
-                $rule_list = Role::getAccessByRoleId($role_id, "rule_id", 0, $role['system_id']);
+                $rule_list = Role::getAccessByRoleId($role_id, "rule_id", self::getActiveVal(), $role['system_id']);
                 $result_add = array_diff($rule_id_arr, $rule_list);//需要增加的
                 $result_del = array_diff($rule_list, $rule_id_arr);//需要减少的
 //                    //删除差异

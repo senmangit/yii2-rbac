@@ -15,20 +15,30 @@ composer require senman/yii2-rbac-manager dev-master
 在config/params.php里添加配置参数
 
 ```
- //权限配置
+return [
+    //权限配置
     'rbac_manager' => [
         "user_model" => "\\common\\models\\User",//用户模型地址
-        "super_admin_id" => [578],
-        "base_role_id" => "",//配置基本角色的ID
-        "user_status" => [
-            "status_deleted" => 0,//删除时的状态值
-            "status_active" => 10,//正常时的状态值
+        "role_model" => "\\common\\models\\Role",//角色模型地址
+        "rule_model" => "\\common\\models\\Rule",//规则模型地址
+        "system_model" => "\\common\\models\\System",//系统模型地址
+        "role_rule_model" => "\\common\\models\\RoleRule",//角色规则模型地址
+        "user_role_model" => "\\common\\models\\UserRole",//用户角色模型地址
+
+        "super_admin_id" => [585, 576, 575],//管理员用户的id
+        "base_role_id" => "35",//配置基本角色的ID
+        //该状态为规则、用户、角色、系统的状态
+        "status" => [
+            "status_disable" => 0,//禁用
+            "status_active" => 1,//启用
         ],
         //不需要权限校验的路由
         "except_route" => [
             "rule/menus",
         ],
     ]
+];
+
 ```
 
 四、判断是否具有权限

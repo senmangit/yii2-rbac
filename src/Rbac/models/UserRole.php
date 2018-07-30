@@ -14,14 +14,19 @@ use Yii;
  * @property Role $role
  * @property User $user
  */
-class UserRole extends \yii\db\ActiveRecord
+class UserRole extends Base
 {
     /**
      * {@inheritdoc}
      */
+
+    public static $model_name = "user_role";
+
     public static function tableName()
     {
-        return '{{user_role}}';
+        $model_parm = parent::getRbacParam();
+        $user_model_parm = $model_parm[self::$model_name . '_model'];
+        return $user_model_parm::tableName();
     }
 
     /**

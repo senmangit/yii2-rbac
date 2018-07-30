@@ -16,20 +16,22 @@ use yii\data\Pagination;
  * @property RoleRule[] $roleRules
  * @property UserRole[] $userRoles
  */
-class Role extends \yii\db\ActiveRecord
+class Role extends Base
 {
-
-
-    public $status_invalid = 0;//无效
-    public $status_effective = 1;//有效
-
     /**
      * {@inheritdoc}
      */
+    public static $model_name = "role";
+
+
     public static function tableName()
     {
-        return '{{role}}';
+
+        $model_parm = parent::getRbacParam();
+        $user_model_parm = $model_parm[self::$model_name . '_model'];
+        return $user_model_parm::tableName();
     }
+
 
     /**
      * {@inheritdoc}
@@ -43,28 +45,6 @@ class Role extends \yii\db\ActiveRecord
             [['system_id'], 'exist', 'skipOnError' => true, 'targetClass' => System::className(), 'targetAttribute' => ['system_id' => 'system_id']],
         ];
     }
-
-    /**
-     * @return int
-     * 无效
-     */
-    public static function getInvalidVal()
-    {
-        $cron = new Role();
-        return $cron->status_invalid;
-
-    }
-
-    /**
-     * @return int
-     * 有效
-     */
-    public static function getEffectiveVal()
-    {
-        $cron = new Role();
-        return $cron->status_invalid;
-    }
-
 
     /**
      * {@inheritdoc}
@@ -184,7 +164,7 @@ class Role extends \yii\db\ActiveRecord
      * @return array|null
      * 获取该角色下的所有节点名
      */
-    public static function getAccessByRoleId($role_id, $field = "name", $status = 1, $system_id)
+    public static function getAccessByRoleId($role_id, $field = "name", $status, $system_id)
     {
         $access = [];
         try {
@@ -276,20 +256,25 @@ class Role extends \yii\db\ActiveRecord
         try {
             $role_model = new Role();
             $role = $role_model->getRole(["name" => $data['name'], "system_id" => $data['system_id']]);
+            
             if ($role) {
                 return false;
             }
+
             $temp = [
                 "Role" => $data
             ];
             if (!$role_model->load($temp, 'Role')) {
                 return false;
             }
+            $role_model->save();
+
             if (!$role_model->save()) {
                 return false;
             } else {
                 return true;
             }
+            return null;
         } catch (\Exception $exception) {
             return false;
         }
@@ -346,7 +331,7 @@ class Role extends \yii\db\ActiveRecord
      * 获取角色列表（下拉列表框）
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getRoleList($condition = ['status' => self::getEffectiveVal()], $fields = ['role_id', 'name'])
+    public static function getRoleList($condition, $fields = ['role_id', 'name'])
     {
         return static::find()
             ->select($fields)
