@@ -46,7 +46,7 @@ class Rule extends Base
     public function rules()
     {
         return [
-            [['system_id', 'name', 'title'], 'required'],
+            [['system_id', 'title'], 'required'],
             [['system_id', 'pid', 'status', 'sort', 'menu_show'], 'integer'],
             [['create_at', 'update_at'], 'safe'],
             [['name', 'icon'], 'string', 'max' => 60],

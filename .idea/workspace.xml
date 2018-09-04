@@ -133,8 +133,8 @@
           <file leaf-file-name="Rule.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="859">
-                  <caret line="390" column="92" lean-forward="false" selection-start-line="390" selection-start-column="92" selection-end-line="390" selection-end-column="92" />
+                <state relative-caret-position="1175">
+                  <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -192,9 +192,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-58" />
-    <option name="y" value="137" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="510" />
+    <option name="y" value="356" />
     <option name="width" value="3193" />
     <option name="height" value="1702" />
   </component>
@@ -327,14 +327,7 @@
       <workItem from="1533002787121" duration="103000" />
       <workItem from="1534214938156" duration="1863000" />
       <workItem from="1536046011652" duration="658000" />
-      <workItem from="1536054633494" duration="28000" />
-    </task>
-    <task id="LOCAL-00029" summary="修复bug">
-      <created>1528360956143</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1528360956143</updated>
+      <workItem from="1536054633494" duration="489000" />
     </task>
     <task id="LOCAL-00030" summary="修改ID">
       <created>1528362883005</created>
@@ -672,17 +665,24 @@
       <option name="project" value="LOCAL" />
       <updated>1536046068045</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="role add">
+      <created>1536054666107</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1536054666107</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103620000" />
+    <option name="totallyTimeSpent" value="104081000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-58" y="137" width="3193" height="1702" extended-state="0" />
+    <frame x="-11" y="-11" width="3862" height="2122" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17048018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1402439" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -690,7 +690,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9854749" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13006397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.030075189" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.023366967" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1058,8 +1058,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rbac/models/Rule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="859">
-          <caret line="390" column="92" lean-forward="false" selection-start-line="390" selection-start-column="92" selection-end-line="390" selection-end-column="92" />
+        <state relative-caret-position="1175">
+          <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding />
         </state>
       </provider>
