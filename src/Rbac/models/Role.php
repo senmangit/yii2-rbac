@@ -267,8 +267,6 @@ class Role extends Base
             if (!$role_model->load($temp, 'Role')) {
                 return false;
             }
-            $role_model->save();
-
             if (!$role_model->save()) {
                 return false;
             } else {
