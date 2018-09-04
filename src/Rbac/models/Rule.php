@@ -388,7 +388,7 @@ class Rule extends Base
             if ($data['title'] == "") {
                 return false;
             }
-            if (!in_array($data['status'], [self::getActiveVal(), self::getDisableVal()])) {//状态，0：启用，1：禁用
+            if (!in_array($data['status'], [self::getActiveVal(), self::getDisableVal("rule")])) {//状态，0：启用，1：禁用
                 return false;
             }
             if (!in_array($data['menu_show'], [0, 1])) {//是否显示菜单，0：不显示，1：显示
