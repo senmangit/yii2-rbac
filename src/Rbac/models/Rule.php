@@ -50,7 +50,7 @@ class Rule extends Base
             [['system_id', 'pid', 'status', 'sort', 'menu_show'], 'integer'],
             [['create_at', 'update_at'], 'safe'],
             [['name', 'icon'], 'string', 'max' => 60],
-            [['title', 'remark'], 'string', 'max' => 50],
+            [['title','name', 'remark'], 'string', 'max' => 50],
             [['href'], 'string', 'max' => 255],
             [['system_id'], 'exist', 'skipOnError' => true, 'targetClass' => System::className(), 'targetAttribute' => ['system_id' => 'system_id']],
         ];
