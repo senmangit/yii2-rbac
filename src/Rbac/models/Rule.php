@@ -115,7 +115,6 @@ class Rule extends Base
      */
     public static function deleteByRuleId($rule_id)
     {
-        $tr = Yii::$app->db->beginTransaction();
         try {
 
             if (self::getRuleById($rule_id)) {
@@ -125,14 +124,11 @@ class Rule extends Base
                 // (new UsedFunctions())->deleteByCondition(["rule_id" => $rule_id]);
                 //3、删除节点记录
                 $query = Rule::findOne(["rule_id" => $rule_id])->delete();
-                $tr->commit();
                 return $query;
             } else {
-                $tr->rollBack();
                 return false;
             }
         } catch (\Exception $exception) {
-            $tr->rollBack();
             return false;
         }
 
